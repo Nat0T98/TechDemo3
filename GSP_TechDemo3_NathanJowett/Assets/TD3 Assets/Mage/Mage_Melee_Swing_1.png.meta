@@ -152,7 +152,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mage_Melee_Swing_1_0: -2404403125159754205
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UpDownWalk
+  m_Name: PlayerHorizontal
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 7bce5347900e9c944b31d534a76664e8, type: 3}
-    - time: 0.3
-      value: {fileID: 21300000, guid: 2caf834e62750184fa6669068bc21e96, type: 3}
-    - time: 0.53333336
-      value: {fileID: 21300000, guid: 7bce5347900e9c944b31d534a76664e8, type: 3}
+      value: {fileID: 21300000, guid: 85facbee8ab90054b85c16f093b4f73e, type: 3}
+    - time: 0.33333334
+      value: {fileID: 21300000, guid: db2cb833656261342ab4136dbc3a3437, type: 3}
+    - time: 0.6666667
+      value: {fileID: 21300000, guid: 85facbee8ab90054b85c16f093b4f73e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,15 +48,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 7bce5347900e9c944b31d534a76664e8, type: 3}
-    - {fileID: 21300000, guid: 2caf834e62750184fa6669068bc21e96, type: 3}
-    - {fileID: 21300000, guid: 7bce5347900e9c944b31d534a76664e8, type: 3}
+    - {fileID: 21300000, guid: 85facbee8ab90054b85c16f093b4f73e, type: 3}
+    - {fileID: 21300000, guid: db2cb833656261342ab4136dbc3a3437, type: 3}
+    - {fileID: 21300000, guid: 85facbee8ab90054b85c16f093b4f73e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.55
+    m_StopTime: 0.68333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
