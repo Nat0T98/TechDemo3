@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Enemy Stats", menuName ="Enemy/Enemy Stats", order = 1)]
-public class EnemyStats : ScriptableObject
+[CreateAssetMenu(fileName = "New Serpent Info", menuName ="Serpent/Serpent Info", order = 1)] 
+public class SerpentInfo : ScriptableObject
 {
 
     public float maxHealth;
@@ -13,6 +13,6 @@ public class EnemyStats : ScriptableObject
     public float defenceMultiplier;
     public float rangedAttackSpeed;
     public float detectionRadius;
-    public Sprite icon; 
+    public Sprite serpentIcon; 
     
 }

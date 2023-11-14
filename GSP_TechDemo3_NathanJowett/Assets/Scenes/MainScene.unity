@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 56263765}
   - component: {fileID: 56263764}
   m_Layer: 5
-  m_Name: Serpent
+  m_Name: SerpentIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 672150581}
   - component: {fileID: 672150580}
   m_Layer: 5
-  m_Name: Frappi
+  m_Name: FrappiIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1921,8 +1921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc2ebafa3931184999b48e4ed307c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0
-  ThumbStick: {fileID: 0}
+  MoveSpeed: 1
+  ThumbStick: {fileID: 7994729575470223289}
   animator: {fileID: 835751262}
   spriteUp: {fileID: -3985835990242302937, guid: eaa7c5a0ecfb83c4ca628e7684f0727d, type: 3}
   spriteDown: {fileID: 21300000, guid: 85facbee8ab90054b85c16f093b4f73e, type: 3}

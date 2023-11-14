@@ -7,13 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject enemyUIPanel;
-    public Image enemyIcon;
-    public Slider enemyHealthSlider;
-    public Slider enemyManaSlider; 
+    [Header("Serpent HUD Info")]
+    public GameObject SerpentHUD;
+    public Image SerpentIcon;
+    public Slider SerpentHealthSlider;
+    public Slider SerpentManaSlider; 
 
 
-    private SerpentController activeEnemy;
+    private SerpentController Serpent;  
 
     private void Awake()
     {
@@ -27,39 +28,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        updateEnemyUI(); 
+        UpdateSerpentHUD(); 
     }
-    public void SetActiveEnemy(SerpentController newEnemy)
+
+    public void SetActiveEnemy(SerpentController Enemy)
     {
-        if(newEnemy != null)
+        if(Enemy != null)
         {
-            activeEnemy = newEnemy;
+           Serpent = Enemy;
         }
         else
         {
-            activeEnemy = null;
-            enemyIcon.sprite = null;
-            enemyHealthSlider.value = float.MinValue; 
+            Serpent = null;
+            SerpentIcon.sprite = null;
+            SerpentHealthSlider.value = float.MinValue; 
         }
         
     }
 
-    void updateEnemyUI()
+    void UpdateSerpentHUD()
     {
-       // enemyUIPanel.SetActive(true);
-
-        enemyIcon.sprite = activeEnemy.EnemyStats.icon;
-        enemyHealthSlider.value = activeEnemy.currentHealth; 
+       
+        SerpentIcon.sprite = Serpent.SerpentInfo.serpentIcon;
+        SerpentHealthSlider.value = Serpent.currentHealth; 
         
     }
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerStats playerStats;
+    public PlayerInfo PlayerInfo;
 
 
-    public FireBall fireBall;
-    public ArcaneMissile ArcaneMissile;
-    public FrostLance frostLance;
+    public FireBall FireBall;
+    public FrostLance FrostLance;
+    public ArcaneMissile ArcaneMissile;    
     public MageArmor MageArmor; 
     
     float currentHealth;
@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initialisePlayer();
-        
+        SetPlayerHealth();
     }
 
     // Update is called once per frame
@@ -28,42 +27,40 @@ public class PlayerController : MonoBehaviour
         SerpentAggroRange(); 
     }
 
-    void initialisePlayer()
+    private void SetPlayerHealth()
     {
-        Debug.Log("Player Has " + (playerStats.maxHealth) + " Health");
-        maxHealth = playerStats.maxHealth;
-       currentHealth = playerStats.maxHealth; 
-        
+        maxHealth = PlayerInfo.maxHealth;
+        currentHealth = PlayerInfo.maxHealth;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, playerStats.detectionRadius);
-
+        Gizmos.DrawWireSphere(transform.position, PlayerInfo.detectionRadius);
     }
 
     void SerpentAggroRange()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, playerStats.detectionRadius);
+        Collider2D[] Colliders = Physics2D.OverlapCircleAll(transform.position, PlayerInfo.detectionRadius);
 
-        bool enemyInRange = false; 
+        bool IsInRange = false; 
 
-        foreach(Collider2D collider in colliders)
+        foreach(Collider2D col in Colliders)
         {
-            if(collider.CompareTag("Enemy"))
+            if(col.CompareTag("Serpent"))
             {
-                enemyInRange = true;
+                IsInRange = true;
                 break;
             }
         }
-        if(enemyInRange)
+
+        if(IsInRange == true)
         {
-            //Debug.Log("Enemy in range");
+            Debug.Log("Serpent in range");
         }
         else
         {
-           //Debug.Log("Enemy Out of range");
+           Debug.Log("Serpent out of range");
         }
     }
 

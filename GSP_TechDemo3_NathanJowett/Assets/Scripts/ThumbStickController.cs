@@ -4,46 +4,40 @@ using UnityEngine.EventSystems;
 
 public class ThumbStickController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    private Image backgroundImage;
-    private Image joystickImage;
+    private Image Background;
+    private Image ThumbStickImage;
     public float offset;
     public Vector2 InputDirection { set; get; }
 
     private void Start()
     {
-        backgroundImage = GetComponent<Image>();
-        joystickImage = transform.GetChild(0).GetComponent<Image>();
-        Debug.Log(backgroundImage);
-        Debug.Log(joystickImage);
+        Background = GetComponent<Image>();
+        ThumbStickImage = transform.GetChild(0).GetComponent<Image>();
+        Debug.Log(Background);
+        Debug.Log(ThumbStickImage);
         InputDirection = Vector2.zero; 
     }
-
     public void OnDrag(PointerEventData eventData)
     {
         Vector2 pos = Vector2.zero;
-        float bgImageSizeX = backgroundImage.rectTransform.sizeDelta.x;
-        float bgImageSizeY = backgroundImage.rectTransform.sizeDelta.y;
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(backgroundImage.rectTransform,eventData.position,eventData.pressEventCamera, out pos))
+        float bgImageSizeX = Background.rectTransform.sizeDelta.x;
+        float bgImageSizeY = Background.rectTransform.sizeDelta.y;
+        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(Background.rectTransform,eventData.position,eventData.pressEventCamera, out pos))
         {
             pos.x /= bgImageSizeX;
             pos.y /= bgImageSizeY;
             InputDirection = new Vector2(pos.x, pos.y);
-            InputDirection = InputDirection.magnitude > 1 ? InputDirection.normalized : InputDirection;
-            
-            
-            joystickImage.rectTransform.anchoredPosition = new Vector2(InputDirection.x*(bgImageSizeX/offset), InputDirection.y*(bgImageSizeY/offset));
-           // Debug.Log(InputDirection); 
+            InputDirection = InputDirection.magnitude > 1 ? InputDirection.normalized : InputDirection;      
+            ThumbStickImage.rectTransform.anchoredPosition = new Vector2(InputDirection.x*(bgImageSizeX/offset), InputDirection.y*(bgImageSizeY/offset));
         }
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
        OnDrag(eventData);
     }
-
     public void OnPointerUp(PointerEventData eventData)
     {
         InputDirection = Vector2.zero;
-        joystickImage.rectTransform.anchoredPosition = Vector2.zero; 
+        ThumbStickImage.rectTransform.anchoredPosition = Vector2.zero; 
     }
 }

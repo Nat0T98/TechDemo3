@@ -4,26 +4,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
+    public Transform Player;
     public float SmoothTime = 0.3f;
-
     private Vector3 velocity = Vector3.zero;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
-    {
-       
-        if(player != null)
+    {       
+        if(Player != null)
         {
-            Vector3 targetPos = new Vector3(player.position.x, player.position.y, transform.position.z);
-            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, SmoothTime, Mathf.Infinity, Time.fixedDeltaTime);
+            Vector3 CameraPos = new Vector3(Player.position.x, Player.position.y, transform.position.z);
+            transform.position = Vector3.SmoothDamp(transform.position, CameraPos, ref velocity, SmoothTime, Mathf.Infinity, Time.fixedDeltaTime);
         }
-       
     }
 }

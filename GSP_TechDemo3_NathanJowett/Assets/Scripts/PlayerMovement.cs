@@ -5,34 +5,32 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
    [SerializeField] float MoveSpeed;
-    private Rigidbody2D rb;
+    private Rigidbody2D Player;
    [SerializeField] private ThumbStickController ThumbStick;
-    private Vector2 movement; 
+    private Vector2 PlayerMove; 
     private SpriteRenderer spriteRenderer;
-    public Animator animator;
+    public Animator anim;
 
     public Sprite spriteUp;
-    public Sprite spriteDown; 
+    public Sprite spriteDown;    
     
-    
-    // Start is called before the first frame update
+   
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        Player = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        movement = new Vector2(horizontalInput, verticalInput).normalized;
+        PlayerMove = new Vector2(horizontalInput, verticalInput).normalized;
 
        if (ThumbStick.InputDirection != Vector2.zero)
        {
-            movement = ThumbStick.InputDirection;
+            PlayerMove = ThumbStick.InputDirection;
        }    
         
        PlayerMoveAnim(); 
@@ -40,33 +38,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * MoveSpeed * Time.fixedDeltaTime); 
+        Player.MovePosition(Player.position + PlayerMove * MoveSpeed * Time.fixedDeltaTime); 
     }
 
     void PlayerMoveAnim()
     {
-        if(movement != Vector2.zero)
+        if(PlayerMove != Vector2.zero)
         {
-            animator.SetBool("isWalking", true);
-            spriteRenderer.flipX = movement.x < 0; 
-
-          //spriteRenderer.sprite = (movement.y > 0) ? spriteUp : spriteDown;
-            if(Mathf.Abs(movement.y) > Mathf.Abs(movement.x))
+            anim.SetBool("isWalking", true);
+            spriteRenderer.flipX = PlayerMove.x < 0; 
+          
+            if(Mathf.Abs(PlayerMove.y) > Mathf.Abs(PlayerMove.x))
             {
-                animator.SetBool("isWalkingUp", movement.y > 0);
-                animator.SetBool("isWalking", movement.y <= 0); 
+                anim.SetBool("isWalkingUp", PlayerMove.y > 0);
+                anim.SetBool("isWalking", PlayerMove.y <= 0); 
             }
             else
             {
-                animator.SetBool("isWalkingUp", false);
-                animator.SetBool("isWalking", true); 
+                anim.SetBool("isWalkingUp", false);
+                anim.SetBool("isWalking", true); 
             }
 
         }
         else
         {
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isWalkingUp", false);
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isWalkingUp", false);
         }
     }
 }
