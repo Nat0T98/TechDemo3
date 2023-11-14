@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 322946589}
   - component: {fileID: 322946588}
   m_Layer: 5
-  m_Name: MissileButton
+  m_Name: ArcaneMissileButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 447990803}
   - component: {fileID: 447990802}
   m_Layer: 5
-  m_Name: MissileImage
+  m_Name: ArcaneMissileImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,9 +762,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 322946587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &447990802
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -668710475788370483, guid: 4d97d9b08b1e8f043ba7099b3f5e6811, type: 3}
+  m_Sprite: {fileID: 5250201775440073981, guid: 4a81e90a0f4a49642add846d0a5177a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1111,9 +1111,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1185367150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522890317
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5593059296966965431, guid: 7ebd93035bb7c3b44b57b49a5016f543, type: 3}
+  m_Sprite: {fileID: -8659923715250917159, guid: 2a4e8df3c8b10db4997f3747c60b41f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1372,9 +1372,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 322946587}
   - {fileID: 6310308}
   - {fileID: 1185367150}
+  - {fileID: 322946587}
   - {fileID: 1516193930}
   m_Father: {fileID: 1313435418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1997,9 +1997,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1516193930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901239148
@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1524411312157210569, guid: 18f34fb46cab6ef43841ec2b4aa181aa, type: 3}
+  m_Sprite: {fileID: 8481335185072443217, guid: d29f38ab5c1671c4bac1b50620852787, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3406,9 +3406,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6310308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734938522
@@ -3431,7 +3431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6607481912129624618, guid: 4a7058947f357cd4d8d91857e5523d89, type: 3}
+  m_Sprite: {fileID: -6607481912129624618, guid: c60522ce470111c41bf588d32e848e2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
