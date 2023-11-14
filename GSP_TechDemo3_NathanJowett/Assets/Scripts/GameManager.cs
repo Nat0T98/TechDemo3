@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Slider enemyManaSlider; 
 
 
-    private EnemyController activeEnemy;
+    private SerpentController activeEnemy;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         updateEnemyUI(); 
     }
-    public void SetActiveEnemy(EnemyController newEnemy)
+    public void SetActiveEnemy(SerpentController newEnemy)
     {
         if(newEnemy != null)
         {
