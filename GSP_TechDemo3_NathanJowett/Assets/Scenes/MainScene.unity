@@ -425,54 +425,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56263762}
   m_CullTransparentMesh: 1
---- !u!1 &152135233
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 152135235}
-  - component: {fileID: 152135234}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &152135234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152135233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2c9f87a8f20150419c01d3672791eec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyUIPanel: {fileID: 989594090}
-  enemyIcon: {fileID: 56263764}
-  enemyHealthSlider: {fileID: 2040486169}
-  enemyManaSlider: {fileID: 1670591901}
---- !u!4 &152135235
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152135233}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 254.67395, y: 184.97685, z: -2.8904612}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &179424240
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,8 +920,8 @@ GameObject:
   - component: {fileID: 465414794}
   - component: {fileID: 465414795}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Name: Serpent
+  m_TagString: Serpent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1102,7 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4b1a637949b2a43a3b38c0f955bd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyStats: {fileID: 11400000, guid: ac39de3f194cd5f4494b33473c580670, type: 2}
+  SerpentInfo: {fileID: 11400000, guid: 0135dc03f3295b44686ff63579863fd5, type: 2}
   text: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
@@ -1453,7 +1405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000005722046, y: 93.89}
+  m_AnchoredPosition: {x: 0.000005722046, y: 93.88989}
   m_SizeDelta: {x: 378.7779, y: 100.87039}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707933298
@@ -1836,7 +1788,7 @@ GameObject:
   - component: {fileID: 835751263}
   - component: {fileID: 835751264}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Frappi
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1921,9 +1873,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc2ebafa3931184999b48e4ed307c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 3
   ThumbStick: {fileID: 7994729575470223289}
-  animator: {fileID: 835751262}
+  anim: {fileID: 835751262}
   spriteUp: {fileID: -3985835990242302937, guid: eaa7c5a0ecfb83c4ca628e7684f0727d, type: 3}
   spriteDown: {fileID: 21300000, guid: 85facbee8ab90054b85c16f093b4f73e, type: 3}
 --- !u!50 &835751261
@@ -1987,10 +1939,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6fd479a7f164246be58abdd501473d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 11400000, guid: a6e894ef5f3c58a4d8633d65261b8430, type: 2}
-  fireBall: {fileID: 0}
+  PlayerInfo: {fileID: 11400000, guid: a6e894ef5f3c58a4d8633d65261b8430, type: 2}
+  FireBall: {fileID: 0}
+  FrostLance: {fileID: 0}
   ArcaneMissile: {fileID: 0}
-  frostLance: {fileID: 0}
   MageArmor: {fileID: 0}
 --- !u!61 &835751264
 BoxCollider2D:
@@ -4409,7 +4361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebae53fa06b38340a8671eae02b28e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 835751259}
+  Player: {fileID: 835751259}
   SmoothTime: 0.1
 --- !u!225 &4919564188056979120
 CanvasGroup:
@@ -4598,5 +4550,4 @@ SceneRoots:
   - {fileID: 2061618655}
   - {fileID: 835751259}
   - {fileID: 465414791}
-  - {fileID: 152135235}
   - {fileID: 286708387}

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe032fba3e0dac645bd5f65330ec0f03, type: 3}
-  m_Name: New Serpent Info
+  m_Script: {fileID: 11500000, guid: e1cc58fd8869f7748b29877d56f2cf46, type: 3}
+  m_Name: FireBall
   m_EditorClassIdentifier: 
-  maxHealth: 250
-  currentHealth: 250
-  baseDamage: 25
-  defenceMultiplier: 0.8
-  rangedAttackSpeed: 3
-  detectionRadius: 5
-  serpentIcon: {fileID: 0}
+  manaCost: 120
+  castingTime: 3
+  basePower: 35
+  additionalDamage: 4
+  additionalDamageInterval: 3
+  debuffDuration: 15
+  critMultiplier: 2

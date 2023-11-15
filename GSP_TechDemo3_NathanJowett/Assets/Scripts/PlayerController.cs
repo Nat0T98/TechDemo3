@@ -56,11 +56,11 @@ public class PlayerController : MonoBehaviour
 
         if(IsInRange == true)
         {
-            Debug.Log("Serpent in range");
+            Debug.Log("Serpent In Range");
         }
         else
         {
-           Debug.Log("Serpent out of range");
+           Debug.Log("Serpent Not In Range");
         }
     }
 

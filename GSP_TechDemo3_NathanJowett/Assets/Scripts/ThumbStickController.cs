@@ -13,8 +13,6 @@ public class ThumbStickController : MonoBehaviour, IPointerDownHandler, IPointer
     {
         Background = GetComponent<Image>();
         ThumbStickImage = transform.GetChild(0).GetComponent<Image>();
-        Debug.Log(Background);
-        Debug.Log(ThumbStickImage);
         InputDirection = Vector2.zero; 
     }
     public void OnDrag(PointerEventData eventData)

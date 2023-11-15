@@ -11,31 +11,6 @@ public class MageArmor : ScriptableObject
     public float coolDown = 120f;
     public float defenceMultiplier = 0.65f;
     public float manaRegenRate = 25f;
-    public float buffDuration = 30f;
-
-   
-    public AbilityResult ApplyArmorBuff()
-    {
-        return new AbilityResult(defenceMultiplier, manaRegenRate, buffDuration);
-    }
-
-    [System.Serializable]
-    public struct AbilityResult
-    {
-        public float defenceMultiplier;
-        public float manaRegenRate;
-        public float buffDuration;
-
-        public AbilityResult(float defenceMultiplier, float manaRegenRate, float buffDuration)
-        {
-            this.defenceMultiplier = defenceMultiplier;
-            this.buffDuration = buffDuration;
-            this.manaRegenRate = manaRegenRate;
-        }
-
-    }
-
-   
-
+    public float regenDuration = 30f;
 
 }

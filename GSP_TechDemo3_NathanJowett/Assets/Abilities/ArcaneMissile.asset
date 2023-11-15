@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe032fba3e0dac645bd5f65330ec0f03, type: 3}
-  m_Name: New Serpent Info
+  m_Script: {fileID: 11500000, guid: 01bf95096c77d5845b6d62f5c3e5a6bf, type: 3}
+  m_Name: ArcaneMissile
   m_EditorClassIdentifier: 
-  maxHealth: 250
-  currentHealth: 250
-  baseDamage: 25
-  defenceMultiplier: 0.8
-  rangedAttackSpeed: 3
-  detectionRadius: 5
-  serpentIcon: {fileID: 0}
+  manaCost: 150
+  castingTime: 5
+  basePowerPerMissile: 15
+  missileInterval: 1
+  criticalHitChance: 25
+  brillianceBuffDuration: 10
+  channelingCancelThreshold: 0.1
