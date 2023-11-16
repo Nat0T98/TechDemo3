@@ -1873,11 +1873,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc2ebafa3931184999b48e4ed307c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3
   ThumbStick: {fileID: 7994729575470223289}
+  MoveSpeed: 3
   anim: {fileID: 835751262}
-  spriteUp: {fileID: -3985835990242302937, guid: eaa7c5a0ecfb83c4ca628e7684f0727d, type: 3}
-  spriteDown: {fileID: 21300000, guid: 85facbee8ab90054b85c16f093b4f73e, type: 3}
 --- !u!50 &835751261
 Rigidbody2D:
   serializedVersion: 4
@@ -1940,10 +1938,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerInfo: {fileID: 11400000, guid: a6e894ef5f3c58a4d8633d65261b8430, type: 2}
-  FireBall: {fileID: 0}
-  FrostLance: {fileID: 0}
-  ArcaneMissile: {fileID: 0}
-  MageArmor: {fileID: 0}
+  FireBall: {fileID: 11400000, guid: 77576d8309996a74bb942c0fb9f10870, type: 2}
+  FrostLance: {fileID: 11400000, guid: ad5d648c5e14e3940a7757caf4d0d6bf, type: 2}
+  ArcaneMissile: {fileID: 11400000, guid: c573fa3ff79d0be48a4fd21d1b530a29, type: 2}
+  MageArmor: {fileID: 11400000, guid: f378d8254ae066745b6c18f0abb25c83, type: 2}
 --- !u!61 &835751264
 BoxCollider2D:
   m_ObjectHideFlags: 0
