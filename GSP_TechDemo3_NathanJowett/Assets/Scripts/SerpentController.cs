@@ -6,9 +6,8 @@ using UnityEngine;
 public class SerpentController : MonoBehaviour
 {
    public SerpentInfo SerpentInfo;
-   public TextMeshProUGUI text; //for testing 
-                                ////need reference to UI so can change current target  
-
+  
+    PlayerController playerController;
     public float maxHealth;
     public float currentHealth;
     SerpentController currentActiveEnemy; 
@@ -24,9 +23,10 @@ public class SerpentController : MonoBehaviour
     void Update()
     {      
         AggroRange(); 
+        //if(playerController.)
     }
 
-    private void SetSerpentHealth()
+    void SetSerpentHealth()
     {
         maxHealth = SerpentInfo.maxHealth;
         currentHealth = SerpentInfo.currentHealth;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
+    public SerpentInfo SerpentInfo;
+    private SerpentController serpentController;
 
     public FireBall FireBall;
     public FrostLance FrostLance;
@@ -15,15 +17,18 @@ public class PlayerController : MonoBehaviour
     float maxHealth;
     float minHealth;
 
+    
     void Start()
     {
         SetPlayerHealth();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        SerpentAggroRange(); 
+        SerpentAggroRange();
+        StartCoroutine(Death());
     }
 
     private void SetPlayerHealth()
@@ -55,13 +60,40 @@ public class PlayerController : MonoBehaviour
 
         if(IsInRange == true)
         {
+            
             Debug.Log("Serpent In Range");
+            NormalAttack();
+           
         }
         else
         {
+          
            Debug.Log("Serpent Not In Range");
         }
     }
 
-  
+
+    void NormalAttack()
+    {
+       
+
+    }
+
+    void PlayerDeath()
+    {
+        SetPlayerHealth();
+        //serpentController.
+    }
+    IEnumerator Death()
+    {
+        if(PlayerInfo.currentHealth <= 0) 
+        {
+            Destroy(gameObject);
+            yield return new WaitForSeconds(3);
+            Instantiate(gameObject);
+            SetPlayerHealth();
+            //serpentController.SetSerpentHealth;
+        }
+    }
+   
 }
