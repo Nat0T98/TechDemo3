@@ -152,7 +152,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ArcaneMissile_0: 5250201775440073981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
 
-
     public FireBall FireBall;
     public FrostLance FrostLance;
     public ArcaneMissile ArcaneMissile;    
@@ -15,7 +14,7 @@ public class PlayerController : MonoBehaviour
     float currentHealth;
     float maxHealth;
     float minHealth;
-    // Start is called before the first frame update
+
     void Start()
     {
         SetPlayerHealth();
