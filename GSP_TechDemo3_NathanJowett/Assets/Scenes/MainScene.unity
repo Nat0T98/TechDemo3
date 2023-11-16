@@ -1055,7 +1055,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SerpentInfo: {fileID: 11400000, guid: 0135dc03f3295b44686ff63579863fd5, type: 2}
-  text: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
 --- !u!61 &465414795
@@ -1938,6 +1937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerInfo: {fileID: 11400000, guid: a6e894ef5f3c58a4d8633d65261b8430, type: 2}
+  SerpentInfo: {fileID: 11400000, guid: 0135dc03f3295b44686ff63579863fd5, type: 2}
   FireBall: {fileID: 11400000, guid: 77576d8309996a74bb942c0fb9f10870, type: 2}
   FrostLance: {fileID: 11400000, guid: ad5d648c5e14e3940a7757caf4d0d6bf, type: 2}
   ArcaneMissile: {fileID: 11400000, guid: c573fa3ff79d0be48a4fd21d1b530a29, type: 2}
