@@ -6,21 +6,23 @@ using UnityEngine.Rendering;
 public class GameManager : MonoBehaviour
 {
     public SerpentController SerpentController;
-    private GameObject ActiveEnemy;
-    
-    private void Update()
-    {
-        
-    }
-    public void setActiveEnemy()
+    public GameObject ActiveEnemy;
+
+    private void Start()
     {
         ActiveEnemy = null;
-        if (ActiveEnemy != null)
-        {
-            ActiveEnemy = SerpentController.gameObject;
-        }
-       
+    }
+    private void Update()
+    {
+
+        setActiveEnemy();
+        
     }
 
+
+    public void setActiveEnemy()
+    {
+        //ActiveEnemy = SerpentController.gameObject;
+    }
 
 }

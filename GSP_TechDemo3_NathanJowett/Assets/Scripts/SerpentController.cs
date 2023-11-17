@@ -49,13 +49,14 @@ public class SerpentController : MonoBehaviour
                 {
                     if (Hit.collider.CompareTag("Serpent"))
                     {
-                        //gameManager.setActiveEnemy(Hit.collider.GetComponent<SerpentController>());
+                        //gameManager.ActiveEnemy = GetComponent<gameObject>();
                         Debug.Log("Active ememy is " + gameObject);
                     }
                     else if (Hit.collider.CompareTag("Ground"))
                     {
+                        //gameManager.ActiveEnemy = null;
                         Debug.Log("Enemy Deselected");
-                        //gameManager.setActiveEnemy() = null;
+                        
                     }
                     
                 }
@@ -115,4 +116,16 @@ public class SerpentController : MonoBehaviour
         }
     }
 
+
+
+
+    public void ToxicRanged()
+    {
+
+    }
+
+    public void ToxicSpecial()
+    {
+
+    }
 }

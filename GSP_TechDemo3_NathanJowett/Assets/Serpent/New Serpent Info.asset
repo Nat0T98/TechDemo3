@@ -18,4 +18,4 @@ MonoBehaviour:
   defenceMultiplier: 0.8
   rangedAttackSpeed: 3
   detectionRadius: 5
-  serpentIcon: {fileID: 0}
+  serpentIcon: {fileID: -4526705061679716435, guid: 3e19e3e915214ac4db3cf0aebc04a83c, type: 3}
