@@ -13,7 +13,7 @@ public class SerpentController : MonoBehaviour
     PlayerController playerController;
     public float maxHealth;
     public float currentHealth;
-    SerpentController activeEnemy; 
+    GameManager gameManager;
       
     
     // Start is called before the first frame update
@@ -32,7 +32,12 @@ public class SerpentController : MonoBehaviour
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                
+
+                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                {
+                    return;
+                }
+
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 touch = new Vector2(pos.x, pos.y);
 
@@ -44,13 +49,13 @@ public class SerpentController : MonoBehaviour
                 {
                     if (Hit.collider.CompareTag("Serpent"))
                     {
-                        activeEnemy = Hit.collider.GetComponent<SerpentController>();
-                        Debug.Log("Active ememy is " + activeEnemy.gameObject);
+                        //gameManager.setActiveEnemy(Hit.collider.GetComponent<SerpentController>());
+                        Debug.Log("Active ememy is " + gameObject);
                     }
-                    else if (Hit.collider.CompareTag("Ground"));
+                    else if (Hit.collider.CompareTag("Ground"))
                     {
-                        Debug.Log("Enemy Deselected");                       
-                        activeEnemy = null;
+                        Debug.Log("Enemy Deselected");
+                        //gameManager.setActiveEnemy() = null;
                     }
                     
                 }
