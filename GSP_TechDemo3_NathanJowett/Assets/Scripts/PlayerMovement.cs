@@ -11,10 +11,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D Player;    
     private SpriteRenderer spriteRenderer;
     public Animator anim;
-    private Vector2 PlayerMove; 
-        
-    
+    private Vector2 PlayerMove;
    
+
+
     void Start()
     {
         Player = GetComponent<Rigidbody2D>();
