@@ -36,16 +36,16 @@ public class SerpentController : MonoBehaviour
 
 
                 int layermask = LayerMask.GetMask("Serpent", "Ground");
-                var Hit = Physics2D.OverlapPoint(touch, layermask);
+                RaycastHit2D Hit = Physics2D.Raycast(touch, Vector2.zero, Mathf.Infinity, layermask);
 
-                if (Hit)
+                if (Hit.collider != null)
                 {
-                    if (Hit.IsTouchingLayers(3))
+                    if (Hit.collider.CompareTag("Serpent"))
                     {
-                        activeEnemy = Hit.GetComponent<SerpentController>();
-                        Debug.Log("Active ememy is ", activeEnemy.gameObject);
+                        activeEnemy = Hit.collider.GetComponent<SerpentController>();
+                        Debug.Log("Active ememy is " + activeEnemy.gameObject);
                     }
-                    else Hit.IsTouchingLayers(6);
+                    else if (Hit.collider.CompareTag("Ground"));
                     {
                         Debug.Log("Enemy Deselected");                       
                         activeEnemy = null;
@@ -54,7 +54,7 @@ public class SerpentController : MonoBehaviour
                 }
                 else
                 {
-                    activeEnemy = null;
+                    //activeEnemy = null;
                    
                 }
             }

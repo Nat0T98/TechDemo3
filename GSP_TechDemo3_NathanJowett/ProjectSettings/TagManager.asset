@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Serpent
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -39,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1653982721
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3379823893
     locked: 0
