@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 20211379}
   - component: {fileID: 20211380}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rock Block 1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 286708387}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +919,7 @@ GameObject:
   - component: {fileID: 465414793}
   - component: {fileID: 465414794}
   - component: {fileID: 465414795}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serpent
   m_TagString: Serpent
   m_Icon: {fileID: 0}
@@ -1998,7 +1998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 886601235}
   - component: {fileID: 886601236}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rock Block 1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2684,7 +2684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334440675}
   - component: {fileID: 1334440674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rock Block 1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
