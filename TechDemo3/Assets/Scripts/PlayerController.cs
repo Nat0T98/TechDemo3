@@ -34,13 +34,13 @@ public class PlayerController : MonoBehaviour
         PlayerMovement = FindFirstObjectByType<PlayerMovement>();
         startingPos = transform.position;
         SetPlayerStats();
+        isPlayerDead = false;
     }
 
     void Update()
     {
         CheckAggroRange(); 
-        isAutoAttackButton();       
-
+        isAutoAttackButton();
     }
  
     public void SetPlayerStats() 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         defenceMultiplier = FrappiInfo.defenceMultiplier;
         transform.position = startingPos; 
         animator.SetBool("isDead", false);
-        isPlayerDead = false; 
+       
         
     }
 
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isAutoAttacking", true);
             Debug.Log("Attacking");
-            DamageManager.DealEnemyDamage(activeTarget, FrappiInfo.baseDamage);
+            DamageController.DealEnemyDamage(activeTarget, FrappiInfo.baseDamage);
         }
         else
         {
@@ -159,13 +159,17 @@ public class PlayerController : MonoBehaviour
     {
         float modifiedDamage = CalculateModifiedDamage(damage);
         currentHealth -= modifiedDamage;
-        DamageManager.ShowDamage((int)modifiedDamage, playerDamagePrefab, transform);
+        DamageController.ShowDamage((int)modifiedDamage, playerDamagePrefab, transform);
 
         if(currentHealth <= 0)
         {
             animator.SetBool("isDead", true);
             isPlayerDead = true;
             StartCoroutine(DeathDelay());                       
+        }
+        else
+        {
+            isPlayerDead = false;
         }
     }
 

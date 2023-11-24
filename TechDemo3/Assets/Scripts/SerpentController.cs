@@ -130,7 +130,7 @@ public class SerpentController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         serpentState = SerpentState.Idle;
         GameManager.instance.enemies.Add(this);
-         
+        isSerpentDead = false;         
 
     }
 
@@ -208,7 +208,7 @@ public class SerpentController : MonoBehaviour
     {
         if(playerTransform != null)
         {
-            DamageManager.DealPlayerDamage(playerTransform.gameObject, baseDamage);            
+            DamageController.DealPlayerDamage(playerTransform.gameObject, baseDamage);            
             serpentState = SerpentState.Aggro;
             
         }
@@ -222,7 +222,7 @@ public class SerpentController : MonoBehaviour
         float modifiedDamage = CalculateModifiedDamage(damage);
         currentHealth -= modifiedDamage;
         //Debug.Log(currentHealth);
-        DamageManager.ShowDamage((int)modifiedDamage, floatingDamage, transform);  
+        DamageController.ShowDamage((int)modifiedDamage, floatingDamage, transform);  
         if(currentHealth <= 0)
         {            
             isSerpentDead = true;

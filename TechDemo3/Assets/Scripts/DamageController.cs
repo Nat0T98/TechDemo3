@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using TMPro;
 using UnityEngine;
 
-public class DamageManager : MonoBehaviour
+public class DamageController : MonoBehaviour
 {
     public static float hitChance = 80;
    

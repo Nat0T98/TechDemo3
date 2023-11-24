@@ -14,8 +14,7 @@ public class GameManager : MonoBehaviour
     public PlayerController Frappi;
     public Slider FrappiHealthSlider;
     public Slider FrappiManaSlider;   
-    public Slider castBarSlider;   
-    public Image FireballButtonImage;     
+    public Slider castBarSlider;            
     public GameObject autoAttack;
     public bool CastBarFull; 
       
@@ -74,7 +73,7 @@ public class GameManager : MonoBehaviour
         
         if (currentTarget != null)
         {
-            // Debug.Log("Updating UI for active enemy: " + activeEnemy.name);
+           
             SerpentStats.SetActive(true);
             SerpentIcon.sprite = currentTarget.SerpentInfo.icon;
             SerpentHealthSlider.value = currentTarget.currentHealth;
