@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public float defenceMultiplier;
     bool isPlayerDead;
     //private GameObject currentEnemy;
-    private EnemyController currentEnemy;
+    private SerpentController currentEnemy;
     public SpriteRenderer playerSpriteColour;
     public Animator animator;
     public Vector3 startingPos;
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 enemyInRange = true;
                 if(collider.gameObject == GameManager.instance.activeEnemy.gameObject)
                 {
-                    currentEnemy = collider.gameObject.GetComponent<EnemyController>();
+                    currentEnemy = collider.gameObject.GetComponent<SerpentController>();
                     
                 }
                 else

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
      
 
-    [SerializeField] private JoyStickScript thumbStick;
+    [SerializeField] private ThumbStickController thumbStick;
     ///public Sprite spriteUp;
     //public Sprite spriteDown; 
     
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FaceTarget()
     {
-        EnemyController activeEnemy = GameManager.instance.activeEnemy;
+        SerpentController activeEnemy = GameManager.instance.activeEnemy;
 
         if (activeEnemy != null)
         {

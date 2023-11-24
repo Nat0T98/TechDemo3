@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Enemy Stats", menuName ="Enemy/Enemy Stats", order = 1)]
-public class EnemyStats : ScriptableObject
+[CreateAssetMenu(fileName = "New Serpent Info", menuName ="Serpent/SerpentInfo ", order = 1)]
+public class SerpentInfo : ScriptableObject
 {
 
     public float maxHealth;

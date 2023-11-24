@@ -25,7 +25,7 @@ public class AbilitiesManager : MonoBehaviour
     {
          
     }
-    public void UseFireball(Vector3 spawnPos, EnemyController targetPos, GameObject fireBallPrefab, float speed)
+    public void UseFireball(Vector3 spawnPos, SerpentController targetPos, GameObject fireBallPrefab, float speed)
     {
         Debug.Log("FireBall made from abilities manager");
         activeFireBall = Instantiate(fireBallPrefab, spawnPos, Quaternion.identity);

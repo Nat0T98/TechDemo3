@@ -9,12 +9,12 @@ public class DamageManager : MonoBehaviour
     public static float hitChance = 80;
    
     
-    public static void DealEnemyDamage(EnemyController target, float baseDamage)
+    public static void DealEnemyDamage(SerpentController target, float baseDamage)
     {
         if (IsHit(hitChance))
         {
             bool isCritical = IsCriticalHit();
-            EnemyController enemy = target.GetComponent<EnemyController>();
+            SerpentController enemy = target.GetComponent<SerpentController>();
 
             if (enemy != null)
             {

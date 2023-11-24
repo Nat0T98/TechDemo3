@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour
     public Image enemyIcon;
     public Slider enemyHealthSlider;
     public Slider enemyManaSlider;
-    public EnemyController activeEnemy;
+    public SerpentController activeEnemy;
    
-    public List<EnemyController> enemies;
+    public List<SerpentController> enemies;
 
     [Header("General References")]
     public Slider castBarSlider;
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     //    }
         
     //}
-    public void SetActiveEnemy(EnemyController newEnemy)
+    public void SetActiveEnemy(SerpentController newEnemy)
     {
         if (newEnemy != null)
         {
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         {
             // Debug.Log("Updating UI for active enemy: " + activeEnemy.name);
             enemyUIPanel.SetActive(true);
-            enemyIcon.sprite = activeEnemy.EnemyStats.icon;
+            enemyIcon.sprite = activeEnemy.SerpentInfo.icon;
             enemyHealthSlider.value = activeEnemy.currentHealth;
             autoAttack.SetActive(true);
         }
@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
             {
                 if(enemy.currentHealth > 0)
                 {
-                    enemy.initialiseEnemy();
+                    enemy.SetSerpent();
                 }
                 else if(enemy.currentHealth <= 0)
                 {
