@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "New Ability", menuName = "Abilities/Arcane Missile")]
-public class ArcaneMissile : Ability
+public class ArcaneMissile : ScriptableObject
 {
     public float basePowerPerMissile = 15f;
     public float missileInterval = 1.0f;
@@ -12,11 +12,4 @@ public class ArcaneMissile : Ability
     public float brillianceBuffDuration = 10f;
     public float channellingCancelThreshold = 0.1f; 
 
-
-
-
-    public override void ExecuteAbility()
-    {
-       ///execute missile 
-    }
 }

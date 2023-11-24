@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement = FindFirstObjectByType<PlayerMovement>();
         startingPos = transform.position;
-        initialisePlayer();
+        SetPlayerStats();
         Debug.Log("Abilities are: " + playerStats.abilities);
     }
 
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
       
     }
 
-    public void initialisePlayer()  ///initialises all player variables locally 
+    public void SetPlayerStats() 
     {
         Debug.Log("Player Has " + (playerStats.maxHealth) + " Health");
         maxHealth = playerStats.maxHealth;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             if(collider.CompareTag("Enemy"))
             {
                 enemyInRange = true;
-                if(collider.gameObject == GameManager.instance.activeEnemy.gameObject)
+                if(collider.gameObject == GameManager.instance.currentTarget.gameObject)
                 {
                     currentEnemy = collider.gameObject.GetComponent<SerpentController>();
                     
@@ -254,18 +254,18 @@ public class PlayerController : MonoBehaviour
     public void FireBall()  ////broken when call the game manager load bar function 
     {
 
-        currentEnemy = GameManager.instance.activeEnemy;
+        currentEnemy = GameManager.instance.currentTarget;
         if(currentMana >= fireBall.manaCost && currentEnemy != null)
         {
 
             
             currentMana -= fireBall.manaCost;
             GameManager.instance.LoadCastBar(fireBall.castingTime);
-            if(AbilitiesManager.instance != null)
+            if(AbilityController.instance != null)
             {
               
                 
-                    AbilitiesManager.instance.UseFireball(transform.position, currentEnemy, FireBallPrefab, 5f);
+                    AbilityController.instance.UseFireball(transform.position, currentEnemy, FireBallPrefab, 5f);
                 
                
             }
@@ -303,10 +303,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DeathDelay() /// the 3 second delay to respawn the player 
     {
         yield return new WaitForSeconds(3f);
-        //animator.SetBool("isDead", false); 
-        //transform.position = startingPos;
-        //isPlayerDead = false; 
-        initialisePlayer(); 
+        SetPlayerStats(); 
     }
 
     

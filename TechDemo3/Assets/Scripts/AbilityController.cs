@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilitiesManager : MonoBehaviour
+public class AbilityController : MonoBehaviour
 {
   
-    public static AbilitiesManager instance;
+    public static AbilityController instance;
     
     private GameObject activeFireBall;
     private GameObject activeMissile;
@@ -14,7 +14,7 @@ public class AbilitiesManager : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = FindFirstObjectByType<AbilitiesManager>();
+            instance = FindFirstObjectByType<AbilityController>();
         }
         else
         {

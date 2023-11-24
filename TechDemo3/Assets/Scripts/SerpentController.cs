@@ -93,13 +93,13 @@ public class SerpentController : MonoBehaviour
                 {
                     if(Hit.collider.CompareTag("Enemy"))
                     {
-                       GameManager.instance.SetActiveEnemy(Hit.collider.GetComponent<SerpentController>());
+                       GameManager.instance.SetActiveTarget(Hit.collider.GetComponent<SerpentController>());
                        currentActiveEnemy = Hit.collider.GetComponent<SerpentController>();
                     }
                     else if(Hit.collider.CompareTag("Ground"))
                     {
                         
-                        GameManager.instance.SetActiveEnemy(null);
+                        GameManager.instance.SetActiveTarget(null);
                         currentActiveEnemy = null; 
                     }
                    
@@ -165,36 +165,22 @@ public class SerpentController : MonoBehaviour
              break;
             }
         }
-        if (InAggroRange)
-        {
-           
-             //MoveTowardsPlayer(playerTransform.position);   ////setting aggro 
-            // Debug.Log("Player in range. Attack Player");
-            //aggro triggered, lock onto player 
-
-        }
-        else
-        {
-           
-            //Debug.Log("Player Out of range");
-            //playerTransform = null;
-            //PlayerInRange = false; 
-        }
+        
     }
 
  
 
 
-    public void MoveTowardsPlayer(Vector3 playerPos)  /// moves towards player during chase state 
+    public void MoveTowardsPlayer(Vector3 Frappi)
     {
         if(serpentState == SerpentState.Aggro)
         {
-            Vector3 direction = (playerPos - transform.position).normalized;
-            enemyAnim.SetFloat("Vertical", playerPos.y - transform.position.y);
+            Vector3 direction = (Frappi - transform.position).normalized;
+            enemyAnim.SetFloat("Vertical", Frappi.y - transform.position.y);
 
-            if (Vector3.Distance(playerPos, transform.position) > 4.0f)
+            if (Vector3.Distance(Frappi, transform.position) > 4.0f)
             {
-                if (playerPos.x > transform.position.x)
+                if (Frappi.x > transform.position.x)
                 {
                     sprite.flipX = true;
                 }
@@ -209,7 +195,7 @@ public class SerpentController : MonoBehaviour
         }
 
     }
-    private void ChasePlayer()  ///the chase state. moves to attack state when time condition is met 
+    private void ChasePlayer()
     {
         if(playerTransform != null && serpentState != SerpentState.Dead)
         {
@@ -256,9 +242,7 @@ public class SerpentController : MonoBehaviour
         float maxDamage = baseDamage * 1.25f;
         float modifiedDamage = Random.Range(minDamage, maxDamage) * defenceMultiplier;
         return modifiedDamage; 
-    }
-
-   
+    } 
 
     private void Die()
     {        

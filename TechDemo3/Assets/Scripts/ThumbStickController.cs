@@ -7,13 +7,13 @@ public class ThumbStickController : MonoBehaviour, IPointerDownHandler, IPointer
     private Image Border;
     private Image ThumbCenter;
     public float offset;
-    public Vector2 InputDirection { set; get; }
+    public Vector2 TouchDir { set; get; }
 
     private void Start()
     {
         Border = GetComponent<Image>();
         ThumbCenter = transform.GetChild(0).GetComponent<Image>();
-        InputDirection = Vector2.zero; 
+        TouchDir = Vector2.zero; 
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -25,9 +25,9 @@ public class ThumbStickController : MonoBehaviour, IPointerDownHandler, IPointer
         {
             pos.x /= BorderSizeX;
             pos.y /= BorderSizeY;
-            InputDirection = new Vector2(pos.x, pos.y);
-            InputDirection = InputDirection.magnitude > 1 ? InputDirection.normalized : InputDirection;           
-            ThumbCenter.rectTransform.anchoredPosition = new Vector2(InputDirection.x*(BorderSizeX/offset), InputDirection.y*(BorderSizeY/offset));
+            TouchDir = new Vector2(pos.x, pos.y);
+            TouchDir = TouchDir.magnitude > 1 ? TouchDir.normalized : TouchDir;           
+            ThumbCenter.rectTransform.anchoredPosition = new Vector2(TouchDir.x*(BorderSizeX/offset), TouchDir.y*(BorderSizeY/offset));
         }
     }
 
@@ -38,7 +38,7 @@ public class ThumbStickController : MonoBehaviour, IPointerDownHandler, IPointer
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        InputDirection = Vector2.zero;
+        TouchDir = Vector2.zero;
         ThumbCenter.rectTransform.anchoredPosition = Vector2.zero; 
     }
 }

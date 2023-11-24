@@ -7,34 +7,31 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager instance; 
+    
+    [Header("Frappi Info")]
+    public GameObject FrappiStats; 
+    public PlayerController Frappi;
+    public Slider FrappiHealthSlider;
+    public Slider FrappiManaSlider;   
+    public Ability activeAbility; 
+    public Slider castBarSlider;   
+    public Image FireballButtonImage;     
+    public GameObject autoAttack;
+    public bool CastBarFull; 
+    private bool isPlayerDead;
+    public List<Ability> UIAbilities;
 
-    [Header("Enemy References")]
-    public GameObject enemyUIPanel;
-    public Image enemyIcon;
-    public Slider enemyHealthSlider;
-    public Slider enemyManaSlider;
-    public SerpentController activeEnemy;
+
+    [Header("Serpent Info")]
+    public GameObject SerpentStats;
+    public Image SerpentIcon;
+    public Slider SerpentHealthSlider;
+    public Image SerpentCurrentBuff;
+    public SerpentController currentTarget;
    
     public List<SerpentController> enemies;
-
-    [Header("General References")]
-    public Slider castBarSlider;
-    public GameObject autoAttack;
-    public Image FireballButtonImage; 
-
-    [Header("Player References")]
-    public GameObject playerUIPanel;
-    public Slider playerHealthSlider;
-    public Slider playerManaSlider;
-    public PlayerController player;
-    public Ability activeAbility;
-    public List<Ability> UIAbilities;
-    private bool isPlayerDead;
-    public bool CastBarFull; 
     
-    
-
     private void Awake()
     {
         if (instance == null)
@@ -47,87 +44,58 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        enemyUIPanel.SetActive(false);
+        SerpentStats.SetActive(false);
         autoAttack.SetActive(false);
         isPlayerDead= false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        UpdatePlayerUI();
-        updateEnemyUI();
+        UpdateFrappiPanel();
+        updateSerpentPanel();
         UpdateGame(); 
         
     }
 
-    public void Respawn()
+    
+    public void SetActiveTarget(SerpentController Target)
     {
-        /// reset player and enemy values here 
-        Debug.Log("Player has respawned");  ///happens on every frame somehow so continuously respawns 
-    }
-    //public void CheckPlayerHealth()
-    //{
-    //    bool isRespawning = player.IsPlayerDead();
-    //    if (isRespawning)
-    //    {
-    //        ///respawn after 3 seconds at full health 
-    //        isRespawning = false;
-    //        Debug.Log("Respawning!");
-    //        Respawn();
-           
-            
-    //    }
-    //    else
-    //    {
-            
-    //    }
-        
-    //}
-    public void SetActiveEnemy(SerpentController newEnemy)
-    {
-        if (newEnemy != null)
+        if (Target != null)
         {
-            Debug.Log("Setting active enemy: " + newEnemy.name);
-            activeEnemy = newEnemy;
+            Debug.Log("Setting active enemy: " + Target.name);
+            currentTarget = Target;
             
         }
         else
         {
-            activeEnemy = null;
-            enemyIcon.sprite = null;
-            enemyHealthSlider.value = float.MinValue;
+            currentTarget = null;
+            SerpentIcon.sprite = null;
+            SerpentHealthSlider.value = float.MinValue;
         }
-
-
-
     }
 
-    void updateEnemyUI()
+    void updateSerpentPanel()
     {
-        // enemyUIPanel.SetActive(true);
-
-        if (activeEnemy != null)
+        
+        if (currentTarget != null)
         {
             // Debug.Log("Updating UI for active enemy: " + activeEnemy.name);
-            enemyUIPanel.SetActive(true);
-            enemyIcon.sprite = activeEnemy.SerpentInfo.icon;
-            enemyHealthSlider.value = activeEnemy.currentHealth;
+            SerpentStats.SetActive(true);
+            SerpentIcon.sprite = currentTarget.SerpentInfo.icon;
+            SerpentHealthSlider.value = currentTarget.currentHealth;
             autoAttack.SetActive(true);
         }
         else
         {
-            enemyUIPanel.SetActive(false);
+            SerpentStats.SetActive(false);
             autoAttack.SetActive(false); 
         }
-        if(activeEnemy.isEnemyDead)
+        if(currentTarget.isEnemyDead)
         {
-            activeEnemy = null;
-            enemyUIPanel.SetActive(false);
+            currentTarget = null;
+            SerpentStats.SetActive(false);
             autoAttack.SetActive(false);
 
         }
@@ -137,10 +105,10 @@ public class GameManager : MonoBehaviour
         
 
     }
-    void UpdatePlayerUI()
+    void UpdateFrappiPanel()
     {
-        playerHealthSlider.value = player.currentHealth; 
-        playerManaSlider.value = player.currentMana;    
+        FrappiHealthSlider.value = Frappi.currentHealth; 
+        FrappiManaSlider.value = Frappi.currentMana;    
     }
 
     public void SetActiveCast(Ability ability)
@@ -169,8 +137,7 @@ public class GameManager : MonoBehaviour
             castBarSlider.value += elapsedTime / castTime;
             yield return null; 
 
-            elapsedTime+= Time.deltaTime;
-            
+            elapsedTime+= Time.deltaTime;           
             
         }
         
@@ -179,7 +146,7 @@ public class GameManager : MonoBehaviour
 
     public bool isDead()
     {
-        if(player.IsPlayerDead())
+        if(Frappi.IsPlayerDead())
         {
             return true;
             
@@ -190,7 +157,11 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+    public void Respawn()
+    {
+        /// reset player and enemy values here 
+        Debug.Log("Player has respawned");
+    }
     public void UpdateGame() //resetting enemy pos and health when player dies 
     {
         if(isDead())
