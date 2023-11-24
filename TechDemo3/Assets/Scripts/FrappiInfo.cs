@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Player Stats", menuName = "Player/Player Stats", order = 1)]
-public class PlayerStats : ScriptableObject
+[CreateAssetMenu(fileName = "New Frappi Info", menuName = "Frappi/Frappi Info", order = 1)]
+public class FrappiInfo : ScriptableObject
 { 
     public int maxHealth;
     public int currentHealth;

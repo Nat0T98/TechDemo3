@@ -72,13 +72,5 @@ public class PlayerMovement : MonoBehaviour
         {
             sprite.flipX = true;
         }
-        if(targetDirection.y > transform.position.y)
-        {
-           // spriteRenderer.sprite = spriteUp; 
-        }
-        else
-        {
-           // spriteRenderer.sprite = spriteDown; 
-        }
     }
 }

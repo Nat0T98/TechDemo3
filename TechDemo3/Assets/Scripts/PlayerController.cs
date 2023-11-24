@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     
-    public PlayerStats playerStats;
+    public FrappiInfo FrappiInfo;
     public float maxHealth;
     public float currentHealth;
     public float maxMana;
@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 startingPos;
     private PlayerMovement PlayerMovement;
    
-    [Header("HUD References")]
     public Button AutoAttackButton;
     public Image AutoAttackButtonImage;
     private bool IsAttackEnabled;
@@ -46,12 +45,12 @@ public class PlayerController : MonoBehaviour
  
     public void SetPlayerStats() 
     {
-        maxHealth = playerStats.maxHealth;
-        currentHealth = playerStats.maxHealth; 
-        maxMana = playerStats.maxMana;
-        currentMana = playerStats.maxMana; 
-        meleeAttackSpeed = playerStats.meleeAttackSpeed;
-        defenceMultiplier = playerStats.defenceMultiplier;
+        maxHealth = FrappiInfo.maxHealth;
+        currentHealth = FrappiInfo.maxHealth; 
+        maxMana = FrappiInfo.maxMana;
+        currentMana = FrappiInfo.maxMana; 
+        meleeAttackSpeed = FrappiInfo.meleeAttackSpeed;
+        defenceMultiplier = FrappiInfo.defenceMultiplier;
         transform.position = startingPos; 
         animator.SetBool("isDead", false);
         isPlayerDead = false; 
@@ -61,12 +60,12 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, playerStats.detectionRadius);
+        Gizmos.DrawWireSphere(transform.position, FrappiInfo.detectionRadius);
     }
 
     void CheckAggroRange() 
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, playerStats.detectionRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, FrappiInfo.detectionRadius);
         bool SerpentAggro = false;
                
 
@@ -148,7 +147,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isAutoAttacking", true);
             Debug.Log("Attacking");
-            DamageManager.DealEnemyDamage(activeTarget, playerStats.baseDamage);
+            DamageManager.DealEnemyDamage(activeTarget, FrappiInfo.baseDamage);
         }
         else
         {
