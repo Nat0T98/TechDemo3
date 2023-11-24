@@ -14,15 +14,11 @@ public class GameManager : MonoBehaviour
     public PlayerController Frappi;
     public Slider FrappiHealthSlider;
     public Slider FrappiManaSlider;   
-    public Ability activeAbility; 
     public Slider castBarSlider;   
     public Image FireballButtonImage;     
     public GameObject autoAttack;
     public bool CastBarFull; 
-    private bool isPlayerDead;
-    public List<Ability> UIAbilities;
-
-
+      
     [Header("Serpent Info")]
     public GameObject SerpentStats;
     public Image SerpentIcon;
@@ -48,15 +44,12 @@ public class GameManager : MonoBehaviour
     {
         SerpentStats.SetActive(false);
         autoAttack.SetActive(false);
-        isPlayerDead= false;
     }
 
     void Update()
     {
         UpdateFrappiPanel();
         updateSerpentPanel();
-        UpdateGame(); 
-        
     }
 
     
@@ -92,17 +85,13 @@ public class GameManager : MonoBehaviour
             SerpentStats.SetActive(false);
             autoAttack.SetActive(false); 
         }
-        if(currentTarget.isEnemyDead)
+        if(currentTarget.isSerpentDead)
         {
             currentTarget = null;
             SerpentStats.SetActive(false);
             autoAttack.SetActive(false);
 
-        }
-
-        ///add and remove abilities from player and enemy icons 
-        ///for(all abilities in active abilities, add to sprite in abilities panel) 
-        
+        }       
 
     }
     void UpdateFrappiPanel()
@@ -111,22 +100,15 @@ public class GameManager : MonoBehaviour
         FrappiManaSlider.value = Frappi.currentMana;    
     }
 
-    public void SetActiveCast(Ability ability)
-    {
-        activeAbility = ability;
-        UIAbilities.Add(activeAbility);
-        ///or add ability directly into the active ability list rather than assigning it to singular variable 
-
-        //activeAbilityList.Add(activeAbility); ////smth like this? 
-    }
-
-    ///function to load cast bar and start particle effects HERE. needs to take casting time as parameter and return to ability function when done 
+    
    public void LoadCastBar(float castTime)
     {
         Debug.Log("Loading Cast Bar");
         castBarSlider.value = 0;
         StartCoroutine(FillCastBar(castTime));
     }
+
+
     IEnumerator FillCastBar(float castTime)
     {
         CastBarFull = false;
@@ -144,40 +126,6 @@ public class GameManager : MonoBehaviour
         castBarSlider.value = 0;
     }
 
-    public bool isDead()
-    {
-        if(Frappi.IsPlayerDead())
-        {
-            return true;
-            
-        }
-        else
-        {
-            return false;
-        }
-
-    }
-    public void Respawn()
-    {
-        /// reset player and enemy values here 
-        Debug.Log("Player has respawned");
-    }
-    public void UpdateGame() //resetting enemy pos and health when player dies 
-    {
-        if(isDead())
-        {
-           foreach(var enemy in enemies)
-            {
-                if(enemy.currentHealth > 0)
-                {
-                    enemy.SetSerpent();
-                }
-                else if(enemy.currentHealth <= 0)
-                {
-
-                }
-            }
-        }
-    }
+    
    
 }

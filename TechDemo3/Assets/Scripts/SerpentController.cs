@@ -19,18 +19,16 @@ public class SerpentController : MonoBehaviour
         Dead
     }
     public SerpentState serpentState = SerpentState.Idle;
-    
-
-    [Header("Stats")]
-    public float maxHealth;
+        
+    private float maxHealth;
     public float currentHealth;
-    public float defenceMultiplier;
-    public float baseDamage;
-    public float aggroSpeed;
+    private float defenceMultiplier;
+    private float baseDamage;
+    private float aggroSpeed;
     private float AttackTimer = 0f;
     private float timeBetweenAttacks;
 
-    [Header("Enemy References")]
+    
     public Animator enemyAnim; 
     public SerpentController currentActiveEnemy;
     public GameObject floatingDamage;
@@ -38,7 +36,7 @@ public class SerpentController : MonoBehaviour
     public Vector3 offset = new Vector3(0, 5, 0);
     private Vector3 EnemyStartingPos; 
     private SpriteRenderer sprite;
-    public bool isEnemyDead; 
+    public bool isSerpentDead; 
 
     private Transform playerTransform = null; 
      
@@ -145,30 +143,25 @@ public class SerpentController : MonoBehaviour
 
 
     void AgrroDetection() 
-    {
-        bool InAggroRange = false;
+    {        
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, SerpentInfo.detectionRadius);
-        
-             
+                     
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Player"))
             {
-                InAggroRange = true;
+                
                 playerTransform = collider.transform;
                 if(serpentState != SerpentState.Dead)
                 {
                     serpentState = SerpentState.Aggro;
                 }              
-                 
-                    
+                                     
              break;
             }
         }
         
     }
-
- 
 
 
     public void MoveTowardsPlayer(Vector3 Frappi)
@@ -232,7 +225,7 @@ public class SerpentController : MonoBehaviour
         DamageManager.ShowDamage((int)modifiedDamage, floatingDamage, transform);  
         if(currentHealth <= 0)
         {            
-            isEnemyDead = true;
+            isSerpentDead = true;
             serpentState = SerpentState.Dead; 
         }
     }

@@ -7,18 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Ability References")]
-    public Ability fireBall;
-    public Ability Armor;
-    public Ability Missile;
-    public Ability FrostLance;
-    public GameObject FireBallPrefab;
-    public GameObject MissilePrefab;
-    public GameObject FrostLancePrefab;
-    public GameObject ArmorPrefab;
     
-   
-    [Header("Player References")]
     public PlayerStats playerStats;
     public float maxHealth;
     public float currentHealth;
@@ -27,9 +16,9 @@ public class PlayerController : MonoBehaviour
     public float meleeAttackSpeed;
     private float nextAttackTime = 0f;
     public float defenceMultiplier;
-    bool isPlayerDead;
-    //private GameObject currentEnemy;
-    private SerpentController currentEnemy;
+    private bool isPlayerDead;
+   
+    private SerpentController activeTarget;
     public SpriteRenderer playerSpriteColour;
     public Animator animator;
     public Vector3 startingPos;
@@ -38,38 +27,27 @@ public class PlayerController : MonoBehaviour
     [Header("HUD References")]
     public Button AutoAttackButton;
     public Image AutoAttackButtonImage;
-    private bool BoolAutoAttackEnabled;
+    private bool IsAttackEnabled;
     public GameObject playerDamagePrefab;
 
-    
-
-    // Start is called before the first frame update
     void Start()
     {
         PlayerMovement = FindFirstObjectByType<PlayerMovement>();
         startingPos = transform.position;
         SetPlayerStats();
-        Debug.Log("Abilities are: " + playerStats.abilities);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CheckDetectionRadius(); 
-        updateAutoAttackButton();
-       
+        CheckAggroRange(); 
+        isAutoAttackButton();       
 
     }
-    private void FixedUpdate()
-    {
-      
-    }
-
+ 
     public void SetPlayerStats() 
     {
-        Debug.Log("Player Has " + (playerStats.maxHealth) + " Health");
         maxHealth = playerStats.maxHealth;
-       currentHealth = playerStats.maxHealth; 
+        currentHealth = playerStats.maxHealth; 
         maxMana = playerStats.maxMana;
         currentMana = playerStats.maxMana; 
         meleeAttackSpeed = playerStats.meleeAttackSpeed;
@@ -79,144 +57,98 @@ public class PlayerController : MonoBehaviour
         isPlayerDead = false; 
         
     }
-    public void ManaRegen()
-    {
-        
-    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, playerStats.detectionRadius);
-
     }
 
-    void CheckDetectionRadius() ///checks for enemy in range 
+    void CheckAggroRange() 
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, playerStats.detectionRadius);
-
-        bool enemyInRange = false;
-
-        
+        bool SerpentAggro = false;
+               
 
         foreach(Collider2D collider in colliders)
         {
             if(collider.CompareTag("Enemy"))
             {
-                enemyInRange = true;
+                SerpentAggro = true;
                 if(collider.gameObject == GameManager.instance.currentTarget.gameObject)
                 {
-                    currentEnemy = collider.gameObject.GetComponent<SerpentController>();
+                    activeTarget = collider.gameObject.GetComponent<SerpentController>();
                     
                 }
                 else
                 {
-                    break; ////check to make sure the in range enemy is my target 
+                    break; 
                 }
-                
-                
-                
-                
-
+               
                 AutoAttackButton.interactable = true; AutoAttackButton.enabled = true;
                 
-                //break;
             }
         }
         nextAttackTime += Time.deltaTime;
-        if (enemyInRange && meleeAttackSpeed <= nextAttackTime)
+        if (SerpentAggro && meleeAttackSpeed <= nextAttackTime)
         { 
 
-            if(BoolAutoAttackEnabled) //// same damage every time? 
-            {
-                
-                MeleeAttack();
-                //animator.SetBool("isAutoAttacking", true);
-               
-               
-                
-              nextAttackTime = 0;
+            if(IsAttackEnabled) 
+            {                
+                NormalAttack();          
+                nextAttackTime = 0;
             }
-           else if(!BoolAutoAttackEnabled)
+            else if(!IsAttackEnabled)
             {
                 animator.SetBool("isAutoAttacking", false);
-            }
-           
-            //AutoAttack.interactable = true; 
-           //need a way to un set the auto attack button 
+            }          
+            
         }
-        else if(!enemyInRange)
-        {
-            //Debug.Log("Not attacking");
-            animator.SetBool("isAutoAttacking",false);
-            
+        else if(!SerpentAggro)
+        {            
+            animator.SetBool("isAutoAttacking",false);            
             AutoAttackButtonImage.color = Color.red;
-            
             AutoAttackButton.interactable = true; 
             AutoAttackButton.enabled = true;
-            currentEnemy = null; 
+            activeTarget = null; 
         }
     }
 
-    void updateAutoAttackButton()   ///performs functionality of auto attack button for various circumstances 
+    void isAutoAttackButton() 
     {
-        if (currentEnemy != null && BoolAutoAttackEnabled)
+        if (activeTarget != null && IsAttackEnabled)
+        {
+            AutoAttackButtonImage.color = Color.green;
+            AutoAttackButton.interactable = true;
+        }
+        else if(activeTarget != null && !IsAttackEnabled) 
         {
             AutoAttackButtonImage.color = Color.white;
-            AutoAttackButton.interactable = true;
-            //ToggleAutoAttack();
+            AutoAttackButton.interactable = true;             
         }
-        else if(currentEnemy != null && !BoolAutoAttackEnabled) 
+        
+        if (activeTarget == null && IsAttackEnabled)
         {
-            AutoAttackButtonImage.color = Color.red;
-            AutoAttackButton.interactable = true; 
-            //ToggleAutoAttack();
+            AutoAttackButtonImage.color = Color.green;
+            AutoAttackButton.interactable = true;
         }
-        if(currentEnemy == null && !BoolAutoAttackEnabled)
+        else if(activeTarget == null && !IsAttackEnabled)
         {
             
-            AutoAttackButtonImage.color = Color.red;
-            AutoAttackButton.interactable = true;
-        }
-        else if (currentEnemy == null && BoolAutoAttackEnabled)
-        {
             AutoAttackButtonImage.color = Color.white;
             AutoAttackButton.interactable = true;
         }
     }
+       
 
-    public void ToggleAutoAttack()  //simply turning auto attack on and off 
-    {
-        Debug.Log("Pressing Toggle Button");
-        
-        BoolAutoAttackEnabled = !BoolAutoAttackEnabled;
-        if(!BoolAutoAttackEnabled)
-        {
-            AutoAttackButtonImage.color = Color.red;
-           // Debug.Log("auto attack disabled");
-            currentEnemy = null; 
-        }
-        else
-        {
-            AutoAttackButtonImage.color = Color.white;
-           // Debug.Log("Auto attack enabled"); 
-
-        }
-    }
-
-
-
-    void MeleeAttack() /// normal attack function 
+    void NormalAttack() 
     {
 
-
-
-        if (currentEnemy != null)
+        if (activeTarget != null)
         {
             animator.SetBool("isAutoAttacking", true);
             Debug.Log("Attacking");
-            DamageManager.DealEnemyDamage(currentEnemy, playerStats.baseDamage);
-
+            DamageManager.DealEnemyDamage(activeTarget, playerStats.baseDamage);
         }
         else
         {
@@ -226,22 +158,17 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)   
     {
-        // damage -= currentHealth;
         float modifiedDamage = CalculateModifiedDamage(damage);
         currentHealth -= modifiedDamage;
         DamageManager.ShowDamage((int)modifiedDamage, playerDamagePrefab, transform);
+
         if(currentHealth <= 0)
         {
             animator.SetBool("isDead", true);
             isPlayerDead = true;
-            StartCoroutine(DeathDelay()); 
-            
-            //PlayerMovement.enabled = false; 
-            
+            StartCoroutine(DeathDelay());                       
         }
     }
-
-
 
     public float CalculateModifiedDamage(float baseDamage) //local take damage function. used in damage class to work out damage values
     {
@@ -251,61 +178,11 @@ public class PlayerController : MonoBehaviour
         return modifiedDamage;
     }
 
-    public void FireBall()  ////broken when call the game manager load bar function 
-    {
-
-        currentEnemy = GameManager.instance.currentTarget;
-        if(currentMana >= fireBall.manaCost && currentEnemy != null)
-        {
-
-            
-            currentMana -= fireBall.manaCost;
-            GameManager.instance.LoadCastBar(fireBall.castingTime);
-            if(AbilityController.instance != null)
-            {
-              
-                
-                    AbilityController.instance.UseFireball(transform.position, currentEnemy, FireBallPrefab, 5f);
-                
-               
-            }
-            else
-            {
-                Debug.Log("Abilities manager is null");
-            }
-            
-            
-           
-
-        }
-        else
-        {
-            Debug.Log("Not enough mana to perform FireBall/ Current Enemy Null");
-        }
-      
     
-          
-    
-    }
-   
-
-    public bool IsPlayerDead() ///boolean to determine if the player is dead 
-    {
-        if(isPlayerDead)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    private IEnumerator DeathDelay() /// the 3 second delay to respawn the player 
+    private IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(3f);
         SetPlayerStats(); 
     }
-
-    
 
 }

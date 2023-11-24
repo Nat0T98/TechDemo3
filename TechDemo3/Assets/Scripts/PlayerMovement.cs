@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator; 
     [SerializeField] private ThumbStickController thumbStick;
 
-
     private Rigidbody2D rb;
     private Vector2 movement; 
     private SpriteRenderer sprite;
@@ -42,22 +41,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void SetSprite()
-    {
-        animator.SetBool("isWalking", true);
+    {        
         animator.SetFloat("Speed", movement.magnitude);
-        
         if (movement != Vector2.zero)
             sprite.flipX = movement.x < 0;          
     }
 
     void FaceTarget()
     {
-        SerpentController activeEnemy = GameManager.instance.currentTarget;
+        SerpentController target = GameManager.instance.currentTarget;
 
-        if (activeEnemy != null)
+        if (target != null)
         {
             animator.SetBool("isTargeting", true);
-            animator.SetFloat("Vertical", activeEnemy.transform.position.y - transform.position.y);
+            animator.SetFloat("Vertical", target.transform.position.y - transform.position.y);
         }
         else
         {
@@ -65,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isTargeting", false);
         }
 
-        Vector3 targetDirection = activeEnemy.transform.position - transform.position;
+        Vector3 targetDirection = target.transform.position - transform.position;
         
         if (targetDirection.x > 0)
         {

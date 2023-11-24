@@ -532,22 +532,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c9f87a8f20150419c01d3672791eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyUIPanel: {fileID: 989594090}
-  enemyIcon: {fileID: 56263764}
-  enemyHealthSlider: {fileID: 2040486169}
-  enemyManaSlider: {fileID: 0}
-  activeEnemy: {fileID: 0}
-  enemies: []
+  FrappiStats: {fileID: 1698544023}
+  Frappi: {fileID: 835751263}
+  FrappiHealthSlider: {fileID: 1950099836}
+  FrappiManaSlider: {fileID: 1527788553}
   castBarSlider: {fileID: 209796466}
-  autoAttack: {fileID: 549330002}
   FireballButtonImage: {fileID: 1734938522}
-  playerUIPanel: {fileID: 1698544023}
-  playerHealthSlider: {fileID: 1950099836}
-  playerManaSlider: {fileID: 1527788553}
-  player: {fileID: 835751263}
-  activeAbility: {fileID: 0}
-  UIAbilities: []
+  autoAttack: {fileID: 549330002}
   CastBarFull: 0
+  SerpentStats: {fileID: 989594090}
+  SerpentIcon: {fileID: 56263764}
+  SerpentHealthSlider: {fileID: 2040486169}
+  SerpentCurrentBuff: {fileID: 1220382164}
+  currentTarget: {fileID: 0}
+  enemies: []
 --- !u!4 &152135235
 Transform:
   m_ObjectHideFlags: 0
@@ -1794,18 +1792,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df8db816e0e10844a0f3646481489a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SerpentInfo: {fileID: 0}
+  SerpentInfo: {fileID: 11400000, guid: ac39de3f194cd5f4494b33473c580670, type: 2}
   serpentState: 0
-  maxHealth: 0
   currentHealth: 0
-  defenceMultiplier: 0
-  baseDamage: 0
-  aggroSpeed: 0
   enemyAnim: {fileID: 465414792}
   currentActiveEnemy: {fileID: 0}
   floatingDamage: {fileID: 3025089940272494458, guid: 9f0017a0e5c6b764caa0004bc9d1a0f3, type: 3}
   offset: {x: 0, y: 5, z: 0}
-  isEnemyDead: 0
+  isSerpentDead: 0
 --- !u!61 &465414795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2705,50 +2699,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672150578}
   m_CullTransparentMesh: 1
---- !u!1 &699205168
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 699205170}
-  - component: {fileID: 699205169}
-  m_Layer: 0
-  m_Name: AbilitiesManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &699205169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699205168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2d16eb2d85f94a4e9246306e37522c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &699205170
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699205168}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1389, y: 137.98428, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &707933296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,7 +2839,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -96, y: -86}
+  m_AnchoredPosition: {x: -96, y: -52.3}
   m_SizeDelta: {x: 151.94513, y: 88.38809}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709428008
@@ -3396,14 +3346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6fd479a7f164246be58abdd501473d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBall: {fileID: 0}
-  Armor: {fileID: 0}
-  Missile: {fileID: 0}
-  FrostLance: {fileID: 0}
-  FireBallPrefab: {fileID: 3559088757689278234, guid: d460ea2819b6c6847903f4343330f25d, type: 3}
-  MissilePrefab: {fileID: 0}
-  FrostLancePrefab: {fileID: 0}
-  ArmorPrefab: {fileID: 0}
   playerStats: {fileID: 11400000, guid: a6e894ef5f3c58a4d8633d65261b8430, type: 2}
   maxHealth: 0
   currentHealth: 0
@@ -4418,7 +4360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1220382163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6305,6 +6247,5 @@ SceneRoots:
   - {fileID: 835751259}
   - {fileID: 465414791}
   - {fileID: 152135235}
-  - {fileID: 699205170}
   - {fileID: 153241956}
   - {fileID: 244609850}
