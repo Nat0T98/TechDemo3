@@ -9,12 +9,12 @@ public class DamageController : MonoBehaviour
     public static float hitChance = 80;
    
     
-    public static void DealEnemyDamage(SerpentController target, float baseDamage)
+    public static void SerpentDamager(SerpentController Target, float baseDamage)
     {
         if (IsHit(hitChance))
         {
             bool isCritical = IsCriticalHit();
-            SerpentController enemy = target.GetComponent<SerpentController>();
+            SerpentController enemy = Target.GetComponent<SerpentController>();
 
             if (enemy != null)
             {
@@ -44,7 +44,7 @@ public class DamageController : MonoBehaviour
         }
     }
 
-    public static void DealPlayerDamage(GameObject target, float baseDamage)
+    public static void FrappiDamager(GameObject target, float baseDamage)
     {
        if(IsHit(hitChance))
         {

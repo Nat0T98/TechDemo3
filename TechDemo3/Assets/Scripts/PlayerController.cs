@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    
     public FrappiInfo FrappiInfo;
     public float maxHealth;
     public float currentHealth;
@@ -52,8 +51,7 @@ public class PlayerController : MonoBehaviour
         meleeAttackSpeed = FrappiInfo.meleeAttackSpeed;
         defenceMultiplier = FrappiInfo.defenceMultiplier;
         transform.position = startingPos; 
-        animator.SetBool("isDead", false);
-       
+        animator.SetBool("isDead", false);       
         
     }
 
@@ -147,7 +145,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isAutoAttacking", true);
             Debug.Log("Attacking");
-            DamageController.DealEnemyDamage(activeTarget, FrappiInfo.baseDamage);
+            DamageController.SerpentDamager(activeTarget, FrappiInfo.baseDamage);
         }
         else
         {

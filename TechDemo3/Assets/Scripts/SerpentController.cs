@@ -101,12 +101,7 @@ public class SerpentController : MonoBehaviour
                         currentActiveEnemy = null; 
                     }
                    
-                }
-                else
-                {
-                    
-                    // GameManager.instance.SetActiveEnemy(null);
-                }
+                }                
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
@@ -118,8 +113,7 @@ public class SerpentController : MonoBehaviour
     }
 
     public  void SetSerpent() 
-    {
-       
+    {       
         maxHealth = SerpentInfo.maxHealth;
         currentHealth = SerpentInfo.currentHealth;
         defenceMultiplier = SerpentInfo.defenceMultiplier;
@@ -130,8 +124,7 @@ public class SerpentController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         serpentState = SerpentState.Idle;
         GameManager.instance.enemies.Add(this);
-        isSerpentDead = false;         
-
+        isSerpentDead = false;
     }
 
     private void OnDrawGizmos() //to help check detection range
@@ -184,9 +177,7 @@ public class SerpentController : MonoBehaviour
                 transform.Translate(direction * aggroSpeed * Time.deltaTime);
 
             }
-
         }
-
     }
     private void ChasePlayer()
     {
@@ -200,15 +191,14 @@ public class SerpentController : MonoBehaviour
                 AttackTimer = 0f;
             }
             enemyAnim.SetBool("isChasing", true);
-            MoveTowardsPlayer(playerTransform.position);
-                        
+            MoveTowardsPlayer(playerTransform.position);                        
         }
     }
-    private void BaseAttack()  //attacks player once then moves back to chase state 
+    private void BaseAttack()  
     {
         if(playerTransform != null)
         {
-            DamageController.DealPlayerDamage(playerTransform.gameObject, baseDamage);            
+            DamageController.FrappiDamager(playerTransform.gameObject, baseDamage);            
             serpentState = SerpentState.Aggro;
             
         }
@@ -217,7 +207,7 @@ public class SerpentController : MonoBehaviour
             Debug.Log("Cant attack player"); 
         }
     }
-    public void TakeDamage(float damage)  //damage function, carries over to damage class where damage calcs take place 
+    public void TakeDamage(float damage)  
     {
         float modifiedDamage = CalculateModifiedDamage(damage);
         currentHealth -= modifiedDamage;
@@ -229,7 +219,7 @@ public class SerpentController : MonoBehaviour
             serpentState = SerpentState.Dead; 
         }
     }
-    public float CalculateModifiedDamage(float baseDamage) //the local function for taking damage, used in damage class to work out the damage 
+    public float CalculateModifiedDamage(float baseDamage) 
     {
         float minDamage = baseDamage * 0.75f;
         float maxDamage = baseDamage * 1.25f;
