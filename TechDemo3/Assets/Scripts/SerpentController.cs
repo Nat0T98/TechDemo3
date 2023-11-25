@@ -31,14 +31,14 @@ public class SerpentController : MonoBehaviour
     
     public Animator enemyAnim; 
     public SerpentController currentActiveEnemy;
-    public GameObject floatingDamage;
+    public GameObject floatingNum;
     private Rigidbody2D rb;
     public Vector3 offset = new Vector3(0, 5, 0);
     private Vector3 EnemyStartingPos; 
     private SpriteRenderer sprite;
     public bool isSerpentDead; 
 
-    private Transform playerTransform = null; 
+    private Transform SerpentTarget = null; 
      
      
     
@@ -55,18 +55,16 @@ public class SerpentController : MonoBehaviour
     {
         switch(serpentState)
         {
+            
             case SerpentState.Idle:
                 break;
             case SerpentState.Aggro:
-                ChasePlayer();
-                break;
-            case SerpentState.Attacking:
-                BaseAttack();
+                Attack();
                 break;
             case SerpentState.Dead:
                 Die();
                 break;
-
+                
         }
         
         //Serpent Selection
@@ -86,7 +84,6 @@ public class SerpentController : MonoBehaviour
                 RaycastHit2D Hit = Physics2D.Raycast(touch, Vector2.zero, Mathf.Infinity, layermask);
                 Debug.Log("Hit Collider tag: " + Hit.collider.tag);
 
-                   // var Hit = Physics2D.OverlapPoint(touchPos);
                 if (Hit.collider != null)
                 {
                     if(Hit.collider.CompareTag("Enemy"))
@@ -123,7 +120,7 @@ public class SerpentController : MonoBehaviour
         transform.position = EnemyStartingPos; 
         sprite = GetComponent<SpriteRenderer>();
         serpentState = SerpentState.Idle;
-        GameManager.instance.enemies.Add(this);
+        GameManager.instance.ActiveSerpent.Add(this);
         isSerpentDead = false;
     }
 
@@ -144,7 +141,7 @@ public class SerpentController : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 
-                playerTransform = collider.transform;
+                SerpentTarget = collider.transform;
                 if(serpentState != SerpentState.Dead)
                 {
                     serpentState = SerpentState.Aggro;
@@ -156,7 +153,6 @@ public class SerpentController : MonoBehaviour
         
     }
 
-
     public void MoveTowardsPlayer(Vector3 Frappi)
     {
         if(serpentState == SerpentState.Aggro)
@@ -164,7 +160,7 @@ public class SerpentController : MonoBehaviour
             Vector3 direction = (Frappi - transform.position).normalized;
             enemyAnim.SetFloat("Vertical", Frappi.y - transform.position.y);
 
-            if (Vector3.Distance(Frappi, transform.position) > 4.0f)
+            if (Vector3.Distance(Frappi, transform.position) > 3.0f)
             {
                 if (Frappi.x > transform.position.x)
                 {
@@ -179,52 +175,40 @@ public class SerpentController : MonoBehaviour
             }
         }
     }
-    private void ChasePlayer()
+    private void Attack()
     {
-        if(playerTransform != null && serpentState != SerpentState.Dead)
+        if(SerpentTarget != null && serpentState != SerpentState.Dead)
         {
             AttackTimer += Time.deltaTime;
            
             if (AttackTimer >= timeBetweenAttacks)
             {
-                serpentState = SerpentState.Attacking;
+                GameManager.FrappiDamager(SerpentTarget.gameObject, baseDamage);
                 AttackTimer = 0f;
             }
             enemyAnim.SetBool("isChasing", true);
-            MoveTowardsPlayer(playerTransform.position);                        
+            MoveTowardsPlayer(SerpentTarget.position);                        
         }
     }
-    private void BaseAttack()  
-    {
-        if(playerTransform != null)
-        {
-            DamageController.FrappiDamager(playerTransform.gameObject, baseDamage);            
-            serpentState = SerpentState.Aggro;
-            
-        }
-        else
-        {
-            Debug.Log("Cant attack player"); 
-        }
-    }
+   
     public void TakeDamage(float damage)  
     {
-        float modifiedDamage = CalculateModifiedDamage(damage);
-        currentHealth -= modifiedDamage;
+        float randDamage = SDamageRange(damage);
+        currentHealth -= randDamage;
         //Debug.Log(currentHealth);
-        DamageController.ShowDamage((int)modifiedDamage, floatingDamage, transform);  
+        GameManager.FloatingDamageNums((int)randDamage, floatingNum, transform);  
         if(currentHealth <= 0)
         {            
             isSerpentDead = true;
             serpentState = SerpentState.Dead; 
         }
     }
-    public float CalculateModifiedDamage(float baseDamage) 
+    public float SDamageRange(float baseDamage) 
     {
         float minDamage = baseDamage * 0.75f;
         float maxDamage = baseDamage * 1.25f;
-        float modifiedDamage = Random.Range(minDamage, maxDamage) * defenceMultiplier;
-        return modifiedDamage; 
+        float randDamage = Random.Range(minDamage, maxDamage) * defenceMultiplier;
+        return randDamage; 
     } 
 
     private void Die()

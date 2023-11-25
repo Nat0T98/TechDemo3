@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public Button AutoAttackButton;
     public Image AutoAttackButtonImage;
     private bool IsAttackEnabled;
-    public GameObject playerDamagePrefab;
+    public GameObject FloatingNum;
 
     void Start()
     {
@@ -40,6 +40,18 @@ public class PlayerController : MonoBehaviour
     {
         CheckAggroRange(); 
         isAutoAttackButton();
+
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Dead");
+            animator.SetBool("isDead", true);
+            isPlayerDead = true;
+            StartCoroutine(DeathDelay());
+        }
+        else
+        {
+            isPlayerDead = false;
+        }
     }
  
     public void SetPlayerStats() 
@@ -61,18 +73,18 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, FrappiInfo.detectionRadius);
     }
 
-    void CheckAggroRange() 
+    public void CheckAggroRange() 
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, FrappiInfo.detectionRadius);
-        bool SerpentAggro = false;
+        bool inRange = false;
                
 
         foreach(Collider2D collider in colliders)
         {
             if(collider.CompareTag("Enemy"))
             {
-                SerpentAggro = true;
-                if(collider.gameObject == GameManager.instance.currentTarget.gameObject)
+                inRange = true;
+                if(collider.gameObject == GameManager.instance.gameObject)
                 {
                     activeTarget = collider.gameObject.GetComponent<SerpentController>();
                     
@@ -86,13 +98,16 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
+
         nextAttackTime += Time.deltaTime;
-        if (SerpentAggro && meleeAttackSpeed <= nextAttackTime)
+        if (inRange == true && meleeAttackSpeed <= nextAttackTime)
         { 
 
             if(IsAttackEnabled) 
-            {                
-                NormalAttack();          
+            {
+                animator.SetBool("isAutoAttacking", true);
+                GameManager.SerpentDamager(activeTarget, FrappiInfo.baseDamage);
+                        
                 nextAttackTime = 0;
             }
             else if(!IsAttackEnabled)
@@ -101,17 +116,17 @@ public class PlayerController : MonoBehaviour
             }          
             
         }
-        else if(!SerpentAggro)
+        else if(inRange == false)
         {            
             animator.SetBool("isAutoAttacking",false);            
-            AutoAttackButtonImage.color = Color.red;
+            AutoAttackButtonImage.color = Color.white;
             AutoAttackButton.interactable = true; 
             AutoAttackButton.enabled = true;
             activeTarget = null; 
         }
     }
 
-    void isAutoAttackButton() 
+    public void isAutoAttackButton() 
     {
         if (activeTarget != null && IsAttackEnabled)
         {
@@ -137,46 +152,21 @@ public class PlayerController : MonoBehaviour
         }
     }
        
-
-    void NormalAttack() 
-    {
-
-        if (activeTarget != null)
-        {
-            animator.SetBool("isAutoAttacking", true);
-            Debug.Log("Attacking");
-            DamageController.SerpentDamager(activeTarget, FrappiInfo.baseDamage);
-        }
-        else
-        {
-            Debug.Log("Cant attack. No current enemy");
-        }
-    }
-
+   
     public void TakeDamage(float damage)   
     {
-        float modifiedDamage = CalculateModifiedDamage(damage);
-        currentHealth -= modifiedDamage;
-        DamageController.ShowDamage((int)modifiedDamage, playerDamagePrefab, transform);
-
-        if(currentHealth <= 0)
-        {
-            animator.SetBool("isDead", true);
-            isPlayerDead = true;
-            StartCoroutine(DeathDelay());                       
-        }
-        else
-        {
-            isPlayerDead = false;
-        }
+        Debug.Log("current health is " + currentHealth);
+        float randDamage = DamageRange(damage);
+        currentHealth -= randDamage;
+        GameManager.FloatingDamageNums((int)randDamage, FloatingNum, transform);
     }
 
-    public float CalculateModifiedDamage(float baseDamage) //local take damage function. used in damage class to work out damage values
+    public float DamageRange(float baseDamage) 
     {
         float minDamage = baseDamage * 0.75f;
         float maxDamage = baseDamage * 1.25f;
-        float modifiedDamage = Random.Range(minDamage,maxDamage) * defenceMultiplier;
-        return modifiedDamage;
+        float randDamage = Random.Range(minDamage,maxDamage) * defenceMultiplier;
+        return randDamage;
     }
 
     

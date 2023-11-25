@@ -25,8 +25,12 @@ public class GameManager : MonoBehaviour
     public Image SerpentCurrentBuff;
     public SerpentController currentTarget;
    
-    public List<SerpentController> enemies;
-    
+    public List<SerpentController> ActiveSerpent;
+
+    public static float hitChance = 80;
+    private float critMulitplier = 2;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -125,6 +129,96 @@ public class GameManager : MonoBehaviour
         castBarSlider.value = 0;
     }
 
+
+    //Damage Calculations
+    public static bool HitChance(float hitChance)
+    {
+        float randomValue = Random.value * 100;
+
+        return randomValue <= hitChance;
+    }
+    private static bool CritChance()
+    {
+        float critChance = 20;
+        float critRand = Random.value * 100;
+
+        if (critRand <= critChance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     
-   
+    public static void SerpentDamager(SerpentController Target, float baseDamage)
+    {
+        if (HitChance(hitChance))
+        {
+            bool isCritical = CritChance();
+            SerpentController Serpent = Target.GetComponent<SerpentController>();
+
+            if (Serpent != null)
+            {
+                if (isCritical)
+                {
+                    baseDamage *= 2;
+                }
+                else
+                {
+                    float damage = Serpent.SDamageRange(baseDamage);
+                    Serpent.TakeDamage(damage);
+                    
+                }
+
+            }
+            else
+            {
+                Debug.LogError("Target Missing Enemy controller component");
+            }
+
+        }
+        else
+        {
+            Debug.Log("Attack Missed");
+        }
+    }
+
+    public static void FrappiDamager(GameObject target, float baseDamage)
+    {
+        if (HitChance(hitChance))
+        {
+            bool isCritical = CritChance();
+            PlayerController Frappi = target.GetComponent<PlayerController>();
+            if (Frappi != null)
+            {
+                if (isCritical)
+                {
+                    baseDamage *= 2;
+                }
+                else
+                {
+                    float Damage = Frappi.DamageRange(baseDamage);
+                    Frappi.TakeDamage(Damage);                    
+                }
+            }
+            else
+            {
+                Debug.LogError("Target Missing Player component");
+            }
+        }
+
+    }
+
+    public static void FloatingDamageNums(int damage, GameObject floatingNum, Transform transform)
+    {
+        Vector3 pos = new Vector3(0, 2, 0);
+        var gObj = Instantiate(floatingNum, transform.position + pos, Quaternion.identity, transform);
+        gObj.GetComponent<TextMesh>().text = damage.ToString();
+        Destroy(gObj, 1f);
+    }
+       
+
 }
