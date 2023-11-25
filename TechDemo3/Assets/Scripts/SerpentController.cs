@@ -53,9 +53,9 @@ public class SerpentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("serpent " +currentHealth);
         switch(serpentState)
-        {
-            
+        { 
             case SerpentState.Idle:
                 break;
             case SerpentState.Aggro:
@@ -193,9 +193,9 @@ public class SerpentController : MonoBehaviour
    
     public void TakeDamage(float damage)  
     {
-        float randDamage = SDamageRange(damage);
-        currentHealth -= randDamage;
         Debug.Log("serpent health is " + currentHealth);
+        float randDamage = SDamageRange(damage);
+        currentHealth -= randDamage;        
         GameManager.FloatingDamageNums((int)randDamage, floatingNum, transform);  
         if(currentHealth <= 0)
         {            

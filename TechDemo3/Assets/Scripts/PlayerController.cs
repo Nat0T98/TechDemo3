@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float maxMana;
     public float currentMana;
     public float meleeAttackSpeed;
+    public float baseDamage;
     private float nextAttackTime = 0f;
     public float defenceMultiplier;
     private bool isPlayerDead;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         startingPos = transform.position;
         SetPlayerStats();
         isPlayerDead = false;
+        IsAttackEnabled = true;
     }
 
     void Update()
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = FrappiInfo.maxHealth; 
         maxMana = FrappiInfo.maxMana;
         currentMana = FrappiInfo.maxMana; 
+        baseDamage = FrappiInfo.baseDamage;
         meleeAttackSpeed = FrappiInfo.meleeAttackSpeed;
         defenceMultiplier = FrappiInfo.defenceMultiplier;
         transform.position = startingPos; 
@@ -125,7 +128,11 @@ public class PlayerController : MonoBehaviour
             activeTarget = null; 
         }
     }
-
+    public void ToggleAttack()
+    {
+        IsAttackEnabled = !IsAttackEnabled;
+        Debug.Log("Attack toggled");
+    }
     public void isAutoAttackButton() 
     {
         if (activeTarget != null && IsAttackEnabled)
@@ -155,7 +162,7 @@ public class PlayerController : MonoBehaviour
    
     public void TakeDamage(float damage)   
     {
-        Debug.Log("current health is " + currentHealth);
+        Debug.Log("Player health is " + currentHealth);
         float randDamage = DamageRange(damage);
         currentHealth -= randDamage;
         GameManager.FloatingDamageNums((int)randDamage, FloatingNum, transform);
@@ -163,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
     public float DamageRange(float baseDamage) 
     {
+       
         float minDamage = baseDamage * 0.75f;
         float maxDamage = baseDamage * 1.25f;
         float randDamage = Random.Range(minDamage,maxDamage) * defenceMultiplier;

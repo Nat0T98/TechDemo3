@@ -174,11 +174,7 @@ public class GameManager : MonoBehaviour
                 }
 
             }
-            else
-            {
-                Debug.LogError("Target Missing Enemy controller component");
-            }
-
+           
         }
         else
         {
