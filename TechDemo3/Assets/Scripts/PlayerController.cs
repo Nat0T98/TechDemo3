@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
    
     public Button AutoAttackButton;
     public Image AutoAttackButtonImage;
-    private bool IsAttackEnabled;
+    public bool IsAttackEnabled;
     public GameObject FloatingNum;
 
     void Start()
@@ -175,5 +175,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         SetPlayerStats(); 
     }
+    
+                    
 
 }

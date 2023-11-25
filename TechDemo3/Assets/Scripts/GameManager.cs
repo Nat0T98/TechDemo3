@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public List<SerpentController> ActiveSerpent;
 
     public static float hitChance = 80;
-    private float critMulitplier = 2;
+   
 
 
     private void Awake()

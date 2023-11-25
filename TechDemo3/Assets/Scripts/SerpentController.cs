@@ -195,7 +195,7 @@ public class SerpentController : MonoBehaviour
     {
         float randDamage = SDamageRange(damage);
         currentHealth -= randDamage;
-        //Debug.Log(currentHealth);
+        Debug.Log("serpent health is " + currentHealth);
         GameManager.FloatingDamageNums((int)randDamage, floatingNum, transform);  
         if(currentHealth <= 0)
         {            
