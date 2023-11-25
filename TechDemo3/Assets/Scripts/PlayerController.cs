@@ -108,10 +108,11 @@ public class PlayerController : MonoBehaviour
 
             if(IsAttackEnabled) 
             {
+                
                 animator.SetBool("isAutoAttacking", true);
                 GameManager.SerpentDamager(activeTarget, FrappiInfo.baseDamage);
                         
-                nextAttackTime = 0;
+                nextAttackTime = 0f;
             }
             else if(!IsAttackEnabled)
             {
