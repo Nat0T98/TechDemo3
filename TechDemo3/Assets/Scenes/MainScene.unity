@@ -537,14 +537,13 @@ MonoBehaviour:
   FrappiHealthSlider: {fileID: 1950099836}
   FrappiManaSlider: {fileID: 1527788553}
   castBarSlider: {fileID: 209796466}
-  FireballButtonImage: {fileID: 1734938522}
   autoAttack: {fileID: 549330002}
   CastBarFull: 0
   SerpentStats: {fileID: 989594090}
   SerpentIcon: {fileID: 56263764}
   SerpentHealthSlider: {fileID: 2040486169}
   SerpentCurrentBuff: {fileID: 1220382164}
-  currentTarget: {fileID: 0}
+  currentTarget: {fileID: 465414794}
   enemies: []
 --- !u!4 &152135235
 Transform:
@@ -3346,7 +3345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6fd479a7f164246be58abdd501473d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 11400000, guid: a6e894ef5f3c58a4d8633d65261b8430, type: 2}
+  FrappiInfo: {fileID: 11400000, guid: a6e894ef5f3c58a4d8633d65261b8430, type: 2}
   maxHealth: 0
   currentHealth: 0
   maxMana: 0
