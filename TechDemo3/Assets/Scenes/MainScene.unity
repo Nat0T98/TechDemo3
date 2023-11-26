@@ -1720,7 +1720,7 @@ MonoBehaviour:
   serpentState: 0
   currentHealth: 0
   enemyAnim: {fileID: 465414792}
-  currentActiveEnemy: {fileID: 0}
+  currentActiveEnemy: {fileID: 465414794}
   floatingNum: {fileID: 2749201941308335401, guid: b90eda939e2e52342b0720999e9250fc, type: 3}
   offset: {x: 0, y: 5, z: 0}
   isSerpentDead: 0
@@ -2216,7 +2216,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 835751263}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: isAutoAttackButton
+        m_MethodName: ToggleAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3275,6 +3275,7 @@ MonoBehaviour:
   maxMana: 0
   currentMana: 0
   meleeAttackSpeed: 0
+  baseDamage: 0
   defenceMultiplier: 0
   playerSpriteColour: {fileID: 0}
   animator: {fileID: 835751262}
