@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public Image AutoAttackButtonImage;
     public bool IsAttackEnabled;
     public GameObject FloatingNum;
+    public static float hitChance = 80;
 
     void Start()
     {
@@ -110,8 +111,9 @@ public class PlayerController : MonoBehaviour
             {
                 
                 animator.SetBool("isAutoAttacking", true);
-                GameManager.SerpentDamager(activeTarget, FrappiInfo.baseDamage);
-                        
+                //GameManager.SerpentDamager(activeTarget, FrappiInfo.baseDamage);
+
+                AutoAttackDamage(activeTarget, baseDamage);       
                 nextAttackTime = 0f;
             }
             else if(!IsAttackEnabled)
@@ -129,6 +131,61 @@ public class PlayerController : MonoBehaviour
             activeTarget = null; 
         }
     }
+
+    public void AutoAttackDamage(SerpentController serpent, float baseDamage)
+    {
+        if (GameManager.HitChance(hitChance))
+        {
+            bool isCritical = CritChance();
+            activeTarget = GameManager.instance.currentTarget;
+
+            if (activeTarget != null)
+            {
+                if (isCritical)
+                {
+                    baseDamage *= 2;
+                }
+                else
+                {
+                    float damage = activeTarget.SDamageRange(baseDamage);
+                    activeTarget.TakeDamage(damage);
+
+                }
+
+            }
+
+        }
+        else
+        {
+            Debug.Log("Attack Missed");
+        }
+    }
+
+    public bool HitChance(float hitChance)
+    {
+        float randomValue = Random.value * 100;
+
+        return randomValue <= hitChance;
+    }
+    public bool CritChance()
+    {
+        float critChance = 20;
+        float critRand = Random.value * 100;
+
+        if (critRand <= critChance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+
+
+
     public void ToggleAttack()
     {
         IsAttackEnabled = !IsAttackEnabled;

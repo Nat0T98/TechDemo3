@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-    public static void SerpentDamager(SerpentController Target, float baseDamage)
+    /*public static void SerpentDamager(SerpentController Target, float baseDamage)
     {
         if (HitChance(hitChance))
         {
@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Attack Missed");
         }
-    }
+    }*/
 
     public static void FrappiDamager(GameObject target, float baseDamage)
     {
