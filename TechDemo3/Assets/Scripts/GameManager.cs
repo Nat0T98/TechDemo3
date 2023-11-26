@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
 
     public static void FloatingDamageNums(int damage, GameObject floatingNum, Transform transform)
     {
-        Vector3 pos = new Vector3(0, 1, 0);
+        Vector3 pos = new Vector3(0, 2, 0);
         var gObj = Instantiate(floatingNum, transform.position + pos, Quaternion.identity, transform);
         gObj.GetComponent<TextMesh>().text = damage.ToString();
         Destroy(gObj, 1f);

@@ -232,7 +232,15 @@ public class PlayerController : MonoBehaviour
         float minDamage = baseDamage * 0.75f;
         float maxDamage = baseDamage * 1.25f;
         float randDamage = Random.Range(minDamage,maxDamage) * defenceMultiplier;
-        return randDamage;
+        if(activeTarget.currentHealth <= 50) 
+        {
+            return randDamage * 2;
+        }
+        else
+        {
+            return randDamage;
+        }
+        
     }
 
     

@@ -53,7 +53,7 @@ public class SerpentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("serpent " +currentHealth);
+        Debug.Log("serpent health is" +currentHealth);
         switch(serpentState)
         { 
             case SerpentState.Idle:
@@ -106,7 +106,8 @@ public class SerpentController : MonoBehaviour
             }          
 
         }             
-        AgrroDetection(); 
+        AgrroDetection();
+        //Enraged();
     }
 
     public  void SetSerpent() 
@@ -202,13 +203,28 @@ public class SerpentController : MonoBehaviour
             isSerpentDead = true;
             serpentState = SerpentState.Dead; 
         }
+        if(currentHealth <= 50) 
+        {
+            sprite.color = Color.red;
+        }
     }
     public float SDamageRange(float baseDamage) 
     {
+
         float minDamage = baseDamage * 0.75f;
         float maxDamage = baseDamage * 1.25f;
         float randDamage = Random.Range(minDamage, maxDamage) * defenceMultiplier;
-        return randDamage; 
+        return randDamage;
+        /*if(currentHealth <= 50) 
+        {
+            return randDamage * 2;
+        }
+        else
+        {
+            return randDamage;
+        }*/
+        
+        
     } 
 
     private void Die()
@@ -217,6 +233,20 @@ public class SerpentController : MonoBehaviour
         enemyAnim.SetBool("isDead", true);        
     }
     
+    /*public bool Enraged()
+    {
+        bool isEnraged = false;
+        if (currentHealth <= 50)
+        {
+            sprite.color = Color.red;
+            
+            return  isEnraged = true;
+        }
+        else 
+        {
+            return isEnraged = false;
+        }      
+    }*/
 
 
 }
