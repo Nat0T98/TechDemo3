@@ -36,7 +36,8 @@ public class SerpentController : MonoBehaviour
     public Vector3 offset = new Vector3(0, 5, 0);
     private Vector3 EnemyStartingPos; 
     private SpriteRenderer sprite;
-    public bool isSerpentDead; 
+    public bool isSerpentDead;
+    public Color Enraged;
 
     private Transform SerpentTarget = null; 
      
@@ -205,7 +206,7 @@ public class SerpentController : MonoBehaviour
         }
         if(currentHealth <= 50) 
         {
-            sprite.color = Color.red;
+            sprite.color = Enraged;
         }
     }
     public float SDamageRange(float baseDamage) 
