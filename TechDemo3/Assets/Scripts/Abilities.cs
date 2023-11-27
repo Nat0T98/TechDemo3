@@ -19,6 +19,7 @@ public class Abilities : MonoBehaviour
 
     public void CastFireball()
     {
+        Debug.Log("Casting Fireball");
        Instantiate(Fball, Frappi.transform.position, Quaternion.identity);
        Frappi.currentMana -= FireBall.manaCost;
        //Vector3 pos = new Vector3(2, 0, 0);
@@ -33,6 +34,7 @@ public class Abilities : MonoBehaviour
 
     public void CastFrostLance()
     {
+        Debug.Log("Casting Frost Lance");
         if (Frappi.currentMana <= FrostLance.manaCost)
         {
             Frappi.currentMana -= FrostLance.manaCost;
@@ -48,6 +50,7 @@ public class Abilities : MonoBehaviour
 
     public void CastArcaneMissile()
     {
+        Debug.Log("Casting Arcane Missile");
         if (Frappi.currentMana <= ArcaneMissile.manaCost)
         {
             Frappi.currentMana -= ArcaneMissile.manaCost;
@@ -62,6 +65,7 @@ public class Abilities : MonoBehaviour
     }
     public void CastMageArmor()
     {
+        Debug.Log("Casting Mage Armor");
         if (Frappi.currentMana <= MageArmor.manaCost)
         {
             Frappi.currentMana -= MageArmor.manaCost;
