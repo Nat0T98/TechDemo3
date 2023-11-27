@@ -228,9 +228,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 835751263}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: FireBall
+      - m_Target: {fileID: 707933301}
+        m_TargetAssemblyTypeName: Abilities, Assembly-CSharp
+        m_MethodName: CastFireball
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1302,7 +1302,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 322946590}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707933301}
+        m_TargetAssemblyTypeName: Abilities, Assembly-CSharp
+        m_MethodName: CastArcaneMissile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &322946590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1724,6 +1736,7 @@ MonoBehaviour:
   floatingNum: {fileID: 2749201941308335401, guid: b90eda939e2e52342b0720999e9250fc, type: 3}
   offset: {x: 0, y: 5, z: 0}
   isSerpentDead: 0
+  Enraged: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &465414795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2634,6 +2647,7 @@ GameObject:
   - component: {fileID: 707933299}
   - component: {fileID: 707933298}
   - component: {fileID: 707933300}
+  - component: {fileID: 707933301}
   m_Layer: 5
   m_Name: AbilitiesPanel
   m_TagString: Untagged
@@ -2726,6 +2740,22 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &707933301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707933296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01efcc3bf582d74a828775cdff55759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fball: {fileID: 6267044448523529232, guid: 714cdbf1f2a0bac4ca0ff471404a598f, type: 3}
+  FLance: {fileID: 8354395661191139442, guid: 91610b13ca675834abe501ee757a78f1, type: 3}
+  AMissile: {fileID: 380098361428453447, guid: 3953ec24f2f6f5b499230293cbd9b491, type: 3}
+  Armor: {fileID: 275997768190666863, guid: 34fedbde65cdee84d950ec8141579f3d, type: 3}
 --- !u!1 &709428006
 GameObject:
   m_ObjectHideFlags: 0
@@ -4229,7 +4259,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1185367153}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707933301}
+        m_TargetAssemblyTypeName: Abilities, Assembly-CSharp
+        m_MethodName: CastFrostLance
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1185367153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4845,7 +4887,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516193933}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707933301}
+        m_TargetAssemblyTypeName: Abilities, Assembly-CSharp
+        m_MethodName: CastMageArmor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1516193933
 MonoBehaviour:
   m_ObjectHideFlags: 0

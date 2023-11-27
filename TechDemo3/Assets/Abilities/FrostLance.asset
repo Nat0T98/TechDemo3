@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: FrostLance
   m_EditorClassIdentifier: 
   manaCost: 45
-  castingTime: 0
-  Image: {fileID: 21300000, guid: 7ebd93035bb7c3b44b57b49a5016f543, type: 3}
   basePower: 10
   coolDown: 0.5
   MaxStacks: 5
   slowEffectPerStack: 0.15
   stackingDuration: 5
   tripleDamageThreat: 5
+  prefab: {fileID: 8354395661191139442, guid: 91610b13ca675834abe501ee757a78f1, type: 3}

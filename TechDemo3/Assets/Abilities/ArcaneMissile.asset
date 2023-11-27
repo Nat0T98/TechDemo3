@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: ArcaneMissile
   m_EditorClassIdentifier: 
   manaCost: 150
-  castingTime: 5
-  Image: {fileID: 21300000, guid: 4d97d9b08b1e8f043ba7099b3f5e6811, type: 3}
   basePowerPerMissile: 15
   missileInterval: 1
   criticalHitChance: 25
   brillianceBuffDuration: 10
   channellingCancelThreshold: 0.1
+  prefab: {fileID: 380098361428453447, guid: 3953ec24f2f6f5b499230293cbd9b491, type: 3}

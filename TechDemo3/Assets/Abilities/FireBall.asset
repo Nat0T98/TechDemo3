@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: FireBall
   m_EditorClassIdentifier: 
   manaCost: 120
-  castingTime: 3
   basePower: 35
   additionalDamage: 4
   additionalDamageInterval: 3
   debuffDuration: 15
   critMultiplier: 2
-  Image: {fileID: 21300000, guid: 4a7058947f357cd4d8d91857e5523d89, type: 3}
+  prefab: {fileID: 6267044448523529232, guid: 714cdbf1f2a0bac4ca0ff471404a598f, type: 3}
